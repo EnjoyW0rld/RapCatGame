@@ -60,9 +60,12 @@ public class TextWriting : MonoBehaviour
 
     void SetNewWord()
     {
-        int num = Random.Range(0, words.Length);
-        currentWord = words[num].ToCharArray();
-        text.text = words[num];
+        //int num = Random.Range(0, words.Length);
+        //currentWord = words[num].ToCharArray();
+        currentWord = WordsParser.GetRandomString().ToCharArray();
+        ShowText();
+        //text.text = words[num];
+
     }
 
     bool isLetterCorrect(char c)
