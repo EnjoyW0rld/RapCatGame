@@ -5,22 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MySceneManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static void SetScene(int sceneNumber)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public void SetScene(int sceneNumber)
-    {
-        if(sceneNumber > SceneManager.sceneCount)
+        if(sceneNumber > SceneManager.sceneCountInBuildSettings)
         {
-            Debug.LogError("Invalid scene number");
+            
+            Debug.LogError("Invalid scene number, tried access " + sceneNumber + " out of " + SceneManager.sceneCountInBuildSettings);
             return;
         }
         SceneManager.LoadScene(sceneNumber);

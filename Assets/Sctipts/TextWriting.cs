@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TextWriting : MonoBehaviour
 {
+    public UnityEvent onComplete;
     [SerializeField] TextMeshProUGUI text;
     [SerializeField] string[] words;
     int[] values;
@@ -39,6 +41,7 @@ public class TextWriting : MonoBehaviour
             {
                 SetNewWord();
                 lettersTyped = 0;
+                onComplete?.Invoke();
             }
             ShowText();
         }

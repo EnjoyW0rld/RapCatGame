@@ -9,7 +9,7 @@ public class WordsParser : MonoBehaviour
     [SerializeField]static string[] words;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         words = GetStrings(path);
     }
