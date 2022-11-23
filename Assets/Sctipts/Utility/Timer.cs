@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,3 +41,13 @@ public class Timer : MonoBehaviour
         }
     }
 }
+/*
+ * 
+[Serializable]
+class PrebuildAction
+{
+    enum Script { SceneManager };
+    [SerializeField] Script scriptToInteract;
+
+}
+ */

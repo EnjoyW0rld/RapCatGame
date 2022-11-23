@@ -24,7 +24,7 @@ public class ScoreUpdate : MonoBehaviour
         
     }
 
-    void UpdateScore()
+    void UpdateScore(int streak)
     {
         score += 5;
         text.text = "Current score: " + score;

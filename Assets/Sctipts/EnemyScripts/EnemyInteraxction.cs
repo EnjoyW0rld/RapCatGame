@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyInteraxction : MonoBehaviour
 {
-
+    [SerializeField] EnemyPersona p;
     // Update is called once per frame
     void Update()
     {
@@ -15,8 +15,8 @@ public class EnemyInteraxction : MonoBehaviour
     }
     public void OnInteract()
     {
-        print("kabooom");
-        //MySceneManager.SetScene(2);
+        GameInformation.Instance.SetEnemyPersona(p);
+        MySceneManager.SetScene(2);
     }
     void CheckClick()
     {

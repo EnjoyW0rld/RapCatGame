@@ -6,13 +6,16 @@ using UnityEngine.Events;
 
 public class TextWriting : MonoBehaviour
 {
-    public UnityEvent onComplete;
+    public UnityEvent<int> onComplete;
     [SerializeField] TextMeshProUGUI text;
-    [SerializeField] string[] words;
+    //[SerializeField] string[] words;
+    string[] sentence;
     int[] values;
 
     [SerializeField] char[] currentWord;
     [SerializeField] int lettersTyped = 0;
+
+    [SerializeField] int currentStreak = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,13 +38,15 @@ public class TextWriting : MonoBehaviour
             }
             else
             {
+                currentStreak = 0;
                 lettersTyped = 0;
             }
             if (lettersTyped == currentWord.Length)
             {
                 SetNewWord();
                 lettersTyped = 0;
-                onComplete?.Invoke();
+                currentStreak++;
+                onComplete?.Invoke(currentStreak);
             }
             ShowText();
         }
@@ -63,6 +68,7 @@ public class TextWriting : MonoBehaviour
 
     void SetNewWord()
     {
+        //sentence = new string[] { "Cmn bro "};
         //int num = Random.Range(0, words.Length);
         //currentWord = words[num].ToCharArray();
         currentWord = WordsParser.GetRandomString().ToCharArray();
@@ -79,17 +85,21 @@ public class TextWriting : MonoBehaviour
     void ShowText()
     {
         text.text = " ";
+        if (sentence != null)
+        {
+            text.text += sentence[0];
+        }
         text.text += "<color=#ff0000ff>";
         for (int i = 0; i < currentWord.Length; i++)
         {
             text.color = Color.white;
-            if(i == lettersTyped)
+            if (i == lettersTyped)
             {
                 text.text += "</color>";
             }
-          
+
             text.text += currentWord[i];
         }
-        
+
     }
 }
