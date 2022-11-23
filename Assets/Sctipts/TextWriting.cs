@@ -101,9 +101,9 @@ public class TextWriting : MonoBehaviour
     {
 
         sentence = WordsParser.GetRandomSentence();
-        if (!MyDictionary.Instance.IsInDictionary(sentence[1]))
+        if (!GameInformation.Instance.IsInDictionary(sentence[1]))
         {
-            MyDictionary.Instance.AddWord(sentence[1],WordsParser.GetExplanation(sentence[1]));
+            GameInformation.Instance.AddWord(sentence[1],WordsParser.GetExplanation(sentence[1]));
             print("new added");
         }
         currentWord = sentence[1].ToCharArray();

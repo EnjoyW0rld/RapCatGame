@@ -8,6 +8,7 @@ public class GameInformation : MonoBehaviour
     private static GameInformation instance;
     EnemyPersona pers;
 
+    [HideInInspector]public Dictionary<string, string> learnedWords { get; private set; }
     [HideInInspector] public int reputationPoints { get; private set; }
 
     public static GameInformation Instance { get => instance; }
@@ -17,7 +18,7 @@ public class GameInformation : MonoBehaviour
         if (Instance == null)
         {
             instance = this;
-
+            learnedWords = new Dictionary<string, string>();
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -38,4 +39,12 @@ public class GameInformation : MonoBehaviour
         reputationPoints += toAdd;
     }
 
+    public bool IsInDictionary(string word)
+    {
+        return learnedWords.ContainsKey(word);
+    }
+    public void AddWord(string word, string explanation)
+    {
+        learnedWords.Add(word, explanation);
+    }
 }

@@ -10,12 +10,16 @@ public class WordsParser : MonoBehaviour
     [SerializeField] static List<string[]> sentences;
     [SerializeField] static Dictionary<string, string> allWordsExpl;
 
+    static bool finishedParsing;
+
     // Start is called before the first frame update
     void Awake()
     {
+        if (finishedParsing) return;
         allWordsExpl = new Dictionary<string, string>();
         words = GetStrings(path);
         sentences = ParseSentences("sentence.txt");
+        finishedParsing = true;
     }
 
     string[] GetStrings(string _path)

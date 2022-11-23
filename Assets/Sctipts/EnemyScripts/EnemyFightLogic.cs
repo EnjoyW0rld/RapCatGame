@@ -2,21 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyFightLogic : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI hpText;
     [SerializeField] TextMeshProUGUI wordsWrite;
+
     EnemyPersona persona;
     int maxHp;
-
+    
     [HideInInspector] public bool isEnemyTurn { get; private set; }
 
     string[] sentence;
     char[] currentWord;
     int lettersTyped;
 
-    [SerializeField] float toUpdate;
+    float toUpdate;
 
     void Start()
     {
@@ -97,6 +99,7 @@ public class EnemyFightLogic : MonoBehaviour
         {
             int additionalRP = streak % 10 == 0 ? 20 : 0;
             GameInformation.Instance.UpdateRP(10 + additionalRP);
+            MySceneManager.SetScene(1);
         }
         hpText.text = "Current health: " + persona.getHealth() + "/" + maxHp;
     }

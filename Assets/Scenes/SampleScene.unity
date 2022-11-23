@@ -363,7 +363,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpText: {fileID: 540170847}
   wordsWrite: {fileID: 952467810}
-  toUpdate: 0
 --- !u!4 &354010066
 Transform:
   m_ObjectHideFlags: 0
