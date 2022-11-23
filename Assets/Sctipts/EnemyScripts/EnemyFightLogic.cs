@@ -6,17 +6,89 @@ using UnityEngine;
 public class EnemyFightLogic : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI hpText;
+    [SerializeField] TextMeshProUGUI wordsWrite;
     EnemyPersona persona;
     int maxHp;
+
+    [HideInInspector] public bool isEnemyTurn { get; private set; }
+
+    string[] sentence;
+    char[] currentWord;
+    int lettersTyped;
+
+    [SerializeField] float toUpdate;
 
     void Start()
     {
         persona = GameInformation.Instance.GetCurrentEnemy();
         FindObjectOfType<TextWriting>().onComplete.AddListener(OnWordComplete);
 
-        if (persona != null) maxHp = persona.getHealth();
+        if (persona != null)
+        {
+            maxHp = persona.getHealth();
+            toUpdate = persona.getTypeSpeed();
+        }
+        SetNewWord();
     }
 
+
+    private void Update()
+    {
+        if (!isEnemyTurn) return;
+        toUpdate -= Time.deltaTime;
+        if (toUpdate <= 0)
+        {
+            toUpdate = persona.getTypeSpeed();
+            int r = Random.Range(0, 100);
+            //print(r);
+            if (r >= 20)
+            {
+                lettersTyped++;
+                print(lettersTyped);
+                ShowText();
+            }
+            else
+            {
+                isEnemyTurn = false;
+                lettersTyped = 0;
+                ShowText();
+            }
+            if (lettersTyped == currentWord.Length)
+            {
+                lettersTyped = 0;
+                SetNewWord();
+            }
+        }
+    }
+
+    void SetNewWord()
+    {
+        sentence = WordsParser.GetRandomSentence();
+        currentWord = sentence[1].ToCharArray();
+        ShowText();
+    }
+
+    void ShowText()
+    {
+        wordsWrite.text = " ";
+        if (sentence != null) wordsWrite.text += sentence[0];
+        wordsWrite.text += "<color=#c0c0c0ff>";
+        wordsWrite.text += "<color=#ff0000ff>";
+        for (int i = 0; i < currentWord.Length; i++)
+        {
+            if (i == lettersTyped)
+            {
+                wordsWrite.text += "</color>";
+            }
+            wordsWrite.text += currentWord[i];
+        }
+        wordsWrite.text += "</color>";
+        if (sentence != null) wordsWrite.text += sentence[2];
+    }
+    public void ChangeTurn(bool turn)
+    {
+        isEnemyTurn = turn;
+    }
     void OnWordComplete(int streak)
     {
         int additionalDamage = streak % 5 == 0 ? 10 : 0;

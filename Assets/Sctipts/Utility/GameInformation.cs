@@ -17,6 +17,7 @@ public class GameInformation : MonoBehaviour
         if (Instance == null)
         {
             instance = this;
+
             DontDestroyOnLoad(gameObject);
         }
         else

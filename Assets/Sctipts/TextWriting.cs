@@ -8,17 +8,24 @@ public class TextWriting : MonoBehaviour
 {
     public UnityEvent<int> onComplete;
     [SerializeField] TextMeshProUGUI text;
+    [SerializeField] TextMeshProUGUI timeGUI;
     //[SerializeField] string[] words;
     string[] sentence;
     int[] values;
 
     [SerializeField] char[] currentWord;
     [SerializeField] int lettersTyped = 0;
-
     [SerializeField] int currentStreak = 0;
+
+    [SerializeField] float timeForWord;
+    float timeLeft;
+    EnemyFightLogic enemy;
     // Start is called before the first frame update
     void Start()
     {
+        enemy = FindObjectOfType<EnemyFightLogic>();
+
+        timeLeft = timeForWord;
         values = (int[])System.Enum.GetValues(typeof(KeyCode));
         SetNewWord();
     }
@@ -26,7 +33,10 @@ public class TextWriting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (enemy.isEnemyTurn) return;
         KeyCode k = KeyCode.None;
+
+        TimeManager();
 
         if (Input.anyKeyDown)
         {
@@ -38,11 +48,13 @@ public class TextWriting : MonoBehaviour
             }
             else
             {
+                OnTimeElapsed();
                 currentStreak = 0;
                 lettersTyped = 0;
             }
             if (lettersTyped == currentWord.Length)
             {
+                timeLeft = timeForWord;
                 SetNewWord();
                 lettersTyped = 0;
                 currentStreak++;
@@ -66,22 +78,41 @@ public class TextWriting : MonoBehaviour
         return KeyCode.None;
     }
 
+    void TimeManager()
+    {
+        timeLeft -= Time.deltaTime;
+        timeGUI.text = "Time left: " + timeLeft;
+        if (timeLeft <= 0)
+        {
+            OnTimeElapsed();
+            //timeLeft = 0;
+            //timeLeft = timeForWord;
+            //enemy.ChangeTurn(true);
+        }
+    }
+    void OnTimeElapsed()
+    {
+
+        timeGUI.text = "Time left: " + 0;
+        timeLeft = timeForWord;
+        enemy.ChangeTurn(true);
+    }
     void SetNewWord()
     {
-        //sentence = new string[] { "Cmn bro "};
-        //int num = Random.Range(0, words.Length);
-        //currentWord = words[num].ToCharArray();
-        currentWord = WordsParser.GetRandomString().ToCharArray();
+
+        sentence = WordsParser.GetRandomSentence();
+        if (!MyDictionary.Instance.IsInDictionary(sentence[1]))
+        {
+            MyDictionary.Instance.AddWord(sentence[1],WordsParser.GetExplanation(sentence[1]));
+            print("new added");
+        }
+        currentWord = sentence[1].ToCharArray();
         ShowText();
-        //text.text = words[num];
-
     }
-
     bool isLetterCorrect(char c)
     {
         return c == currentWord[lettersTyped] || char.ToUpper(c) == currentWord[lettersTyped];
     }
-
     void ShowText()
     {
         text.text = " ";
@@ -89,16 +120,22 @@ public class TextWriting : MonoBehaviour
         {
             text.text += sentence[0];
         }
+        text.text += "<color=#c0c0c0ff>";
         text.text += "<color=#ff0000ff>";
         for (int i = 0; i < currentWord.Length; i++)
         {
-            text.color = Color.white;
+            //text.color = Color.white;
             if (i == lettersTyped)
             {
                 text.text += "</color>";
             }
 
             text.text += currentWord[i];
+        }
+        text.text += "</color>";
+        if (sentence != null)
+        {
+            text.text += sentence[2];
         }
 
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyInteraxction : MonoBehaviour
+public class EnemyInteraxction : MonoBehaviour,IClickable
 {
     [SerializeField] EnemyPersona p;
     // Update is called once per frame
@@ -10,16 +10,13 @@ public class EnemyInteraxction : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-            OnInteract();
+            OnClick();
         }
     }
-    public void OnInteract()
+
+    public void OnClick()
     {
         GameInformation.Instance.SetEnemyPersona(p);
         MySceneManager.SetScene(2);
-    }
-    void CheckClick()
-    {
-
     }
 }

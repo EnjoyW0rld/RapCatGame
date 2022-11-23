@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class MouseClickManager : MonoBehaviour
 {
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -21,13 +14,17 @@ public class MouseClickManager : MonoBehaviour
 
             if(hit.collider != null)
             {
-                if(hit.transform.TryGetComponent<EnemyInteraxction>(out EnemyInteraxction iter)) 
+                if(hit.transform.TryGetComponent<IClickable>(out IClickable iter)) 
                 {
-                    iter.OnInteract();
+                    iter.OnClick();
                 }
 
             }
 
         }
     }
+}
+public interface IClickable
+{
+    void OnClick();
 }
