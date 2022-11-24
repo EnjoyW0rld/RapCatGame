@@ -9,10 +9,12 @@ public class EnemyFightLogic : MonoBehaviour
     [SerializeField] TextMeshProUGUI hpText;
     [SerializeField] TextMeshProUGUI wordsWrite;
 
+    [HideInInspector]public UnityEvent<int> OnGetDamage;
     EnemyPersona persona;
     int maxHp;
-    
-    [HideInInspector] public bool isEnemyTurn { get; private set; }
+
+    //[HideInInspector] public bool isEnemyTurn { get; private set; }
+    GeneralFightLogic fightL;
 
     string[] sentence;
     char[] currentWord;
@@ -24,6 +26,7 @@ public class EnemyFightLogic : MonoBehaviour
     {
         persona = GameInformation.Instance.GetCurrentEnemy();
         FindObjectOfType<TextWriting>().onComplete.AddListener(OnWordComplete);
+        fightL = FindObjectOfType<GeneralFightLogic>();
 
         if (persona != null)
         {
@@ -36,7 +39,7 @@ public class EnemyFightLogic : MonoBehaviour
 
     private void Update()
     {
-        if (!isEnemyTurn) return;
+        if (!fightL.isEnemyTurn) return;
         toUpdate -= Time.deltaTime;
         if (toUpdate <= 0)
         {
@@ -46,12 +49,11 @@ public class EnemyFightLogic : MonoBehaviour
             if (r >= 20)
             {
                 lettersTyped++;
-                print(lettersTyped);
                 ShowText();
             }
             else
             {
-                isEnemyTurn = false;
+                fightL.ChangeTurn(false);
                 lettersTyped = 0;
                 ShowText();
             }
@@ -87,10 +89,10 @@ public class EnemyFightLogic : MonoBehaviour
         wordsWrite.text += "</color>";
         if (sentence != null) wordsWrite.text += sentence[2];
     }
-    public void ChangeTurn(bool turn)
+    /*public void ChangeTurn(bool turn)
     {
         isEnemyTurn = turn;
-    }
+    }*/
     void OnWordComplete(int streak)
     {
         int additionalDamage = streak % 5 == 0 ? 10 : 0;
@@ -102,6 +104,8 @@ public class EnemyFightLogic : MonoBehaviour
             MySceneManager.SetScene(1);
         }
         hpText.text = "Current health: " + persona.getHealth() + "/" + maxHp;
+        OnGetDamage?.Invoke(10+additionalDamage);
     }
 
+    public EnemyPersona getCurrentPersona() => persona;
 }

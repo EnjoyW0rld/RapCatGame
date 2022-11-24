@@ -7,8 +7,9 @@ public class WordsParser : MonoBehaviour
 {
     [SerializeField] string pathPlayer = "sentence.txt";
     [SerializeField] string pathEnemy = "test.txt";
-    [SerializeField] static string[] words;
-    [SerializeField] static List<string[]> sentences;
+    static string[] words;
+
+    static List<string[]> sentences;
     static List<string[]> enemyWords;
 
     [SerializeField] static Dictionary<string, string> allWordsExpl;
@@ -74,7 +75,6 @@ public class WordsParser : MonoBehaviour
                 if (str.Contains('-')) //if there is explanation in the file
                 {
                     string[] expl = str.Split('-');
-                    print(expl[1]);
                     tmp = Subdivide(expl[0]);
                     allWordsExpl.Add(tmp[1], expl[1]);
                 }

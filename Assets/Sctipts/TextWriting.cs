@@ -7,19 +7,25 @@ using UnityEngine.Events;
 public class TextWriting : MonoBehaviour
 {
     public UnityEvent<int> onComplete;
+    public UnityEvent OnNewWordAppear;
+
     [SerializeField] TextMeshProUGUI text;
     [SerializeField] TextMeshProUGUI timeGUI;
-    //[SerializeField] string[] words;
+    
     string[] sentence;
     int[] values;
 
-    [SerializeField] char[] currentWord;
-    [SerializeField] int lettersTyped = 0;
-    [SerializeField] int currentStreak = 0;
+    char[] currentWord;
+    int lettersTyped = 0;
+    int currentStreak = 0;
 
-    [SerializeField] float timeForWord;
+    //time variables
+    [SerializeField]float timeForWord;
     float timeLeft;
+    //Other script instances
     EnemyFightLogic enemy;
+    GeneralFightLogic fightL;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,13 +33,14 @@ public class TextWriting : MonoBehaviour
 
         timeLeft = timeForWord;
         values = (int[])System.Enum.GetValues(typeof(KeyCode));
+        fightL = FindObjectOfType<GeneralFightLogic>();
         SetNewWord();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (enemy.isEnemyTurn) return;
+        if (fightL.isEnemyTurn) return;
         KeyCode k = KeyCode.None;
 
         TimeManager();
@@ -85,17 +92,15 @@ public class TextWriting : MonoBehaviour
         if (timeLeft <= 0)
         {
             OnTimeElapsed();
-            //timeLeft = 0;
-            //timeLeft = timeForWord;
-            //enemy.ChangeTurn(true);
         }
     }
     void OnTimeElapsed()
     {
-
         timeGUI.text = "Time left: " + 0;
         timeLeft = timeForWord;
-        enemy.ChangeTurn(true);
+        //enemy.ChangeTurn(true);
+        print("elapsed");
+        fightL.ChangeTurn(true);
     }
     void SetNewWord()
     {
@@ -105,7 +110,7 @@ public class TextWriting : MonoBehaviour
         if (WordsParser.HasExplanation(sentence[1]) && !GameInformation.Instance.IsInDictionary(sentence[1])) 
         {
             GameInformation.Instance.AddWord(sentence[1],WordsParser.GetExplanation(sentence[1]));
-            print("new added");
+            OnNewWordAppear?.Invoke();
         }
         currentWord = sentence[1].ToCharArray();
         ShowText();
