@@ -41,7 +41,7 @@ public class MyDictionary : MonoBehaviour,IClickable
         textPlace.text = " ";
         foreach (var item in GameInformation.Instance.learnedWords)
         {
-            textPlace.text += item.Key + " - " + item.Value;
+            textPlace.text += item.Key + item.Value;
             textPlace.text += "\n";
         }
     }

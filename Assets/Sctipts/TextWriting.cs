@@ -99,9 +99,10 @@ public class TextWriting : MonoBehaviour
     }
     void SetNewWord()
     {
+        sentence = WordsParser.GetRandomSentence(); //get random sentence from pool
 
-        sentence = WordsParser.GetRandomSentence();
-        if (!GameInformation.Instance.IsInDictionary(sentence[1]))
+        //check if word has explanation and is not on the dictionary yet
+        if (WordsParser.HasExplanation(sentence[1]) && !GameInformation.Instance.IsInDictionary(sentence[1])) 
         {
             GameInformation.Instance.AddWord(sentence[1],WordsParser.GetExplanation(sentence[1]));
             print("new added");

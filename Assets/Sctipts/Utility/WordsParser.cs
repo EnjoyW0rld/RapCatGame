@@ -5,10 +5,14 @@ using UnityEngine;
 
 public class WordsParser : MonoBehaviour
 {
-    [SerializeField] string path = "test.txt";
+    [SerializeField] string pathPlayer = "sentence.txt";
+    [SerializeField] string pathEnemy = "test.txt";
     [SerializeField] static string[] words;
     [SerializeField] static List<string[]> sentences;
+    static List<string[]> enemyWords;
+
     [SerializeField] static Dictionary<string, string> allWordsExpl;
+    static List<string> notOnDictionary;
 
     static bool finishedParsing;
 
@@ -16,9 +20,14 @@ public class WordsParser : MonoBehaviour
     void Awake()
     {
         if (finishedParsing) return;
+
+        notOnDictionary = new List<string>();
         allWordsExpl = new Dictionary<string, string>();
-        words = GetStrings(path);
-        sentences = ParseSentences("sentence.txt");
+        enemyWords = new List<string[]>();
+
+        words = GetStrings(pathPlayer);
+        sentences = ParseSentences(pathPlayer);
+        enemyWords = ParseSentences(pathEnemy, false);
         finishedParsing = true;
     }
 
@@ -46,36 +55,38 @@ public class WordsParser : MonoBehaviour
         return words[r];
     }
 
-    List<string[]> ParseSentences(string _path)
+    List<string[]> ParseSentences(string _path, bool forPlayer = true)
     {
         if (!File.Exists(_path))
         {
             Debug.LogError("File not found, new blank created!");
             File.Create(_path);
         }
+
         List<string[]> tmpSent = new List<string[]>();
+
         using (StreamReader sr = new StreamReader(_path))
         {
             string str;
             while ((str = sr.ReadLine()) != null)
             {
                 string[] tmp;
-                if (str.Contains('-'))
+                if (str.Contains('-')) //if there is explanation in the file
                 {
                     string[] expl = str.Split('-');
+                    print(expl[1]);
                     tmp = Subdivide(expl[0]);
                     allWordsExpl.Add(tmp[1], expl[1]);
-
                 }
-                else
+                else //if no explanation provided
                 {
                     tmp = Subdivide(str);
+                    if (forPlayer) notOnDictionary.Add(tmp[1]);
                 }
                 tmpSent.Add(tmp);
             }
         }
 
-        //Converting array
         return tmpSent;
     }
     string[] Subdivide(string str)
@@ -110,15 +121,25 @@ public class WordsParser : MonoBehaviour
         }
         return tmp;
     }
-    public static string[] GetRandomSentence()
+    public static string[] GetRandomSentence(bool playerPool = true)
     {
-        int r = Random.Range(0, sentences.Count);
-        return sentences[r];
+        if (playerPool)
+        {
+            int r = Random.Range(0, sentences.Count);
+            return sentences[r];
+        }
+        else
+        {
+            int r = Random.Range(0, enemyWords.Count);
+            return enemyWords[r];
+        }
     }
 
     public static string GetExplanation(string word)
     {
         return allWordsExpl[word];
     }
+    public static bool HasExplanation(string word) => !notOnDictionary.Contains(word);
+
 
 }
