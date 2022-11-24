@@ -6,14 +6,15 @@ using UnityEngine.Events;
 
 public class EnemyFightLogic : MonoBehaviour
 {
+    [HideInInspector] public UnityEvent OnWordComplete;
+    [HideInInspector] public UnityEvent<int> OnGetDamage;
+
     [SerializeField] TextMeshProUGUI hpText;
     [SerializeField] TextMeshProUGUI wordsWrite;
 
-    [HideInInspector]public UnityEvent<int> OnGetDamage;
     EnemyPersona persona;
     int maxHp;
 
-    //[HideInInspector] public bool isEnemyTurn { get; private set; }
     GeneralFightLogic fightL;
 
     string[] sentence;
@@ -25,7 +26,7 @@ public class EnemyFightLogic : MonoBehaviour
     void Start()
     {
         persona = GameInformation.Instance.GetCurrentEnemy();
-        FindObjectOfType<TextWriting>().onComplete.AddListener(OnWordComplete);
+        FindObjectOfType<TextWriting>().onComplete.AddListener(GetDamage);
         fightL = FindObjectOfType<GeneralFightLogic>();
 
         if (persona != null)
@@ -45,7 +46,6 @@ public class EnemyFightLogic : MonoBehaviour
         {
             toUpdate = persona.getTypeSpeed();
             int r = Random.Range(0, 100);
-            //print(r);
             if (r >= 20)
             {
                 lettersTyped++;
@@ -59,6 +59,7 @@ public class EnemyFightLogic : MonoBehaviour
             }
             if (lettersTyped == currentWord.Length)
             {
+                OnWordComplete?.Invoke();
                 lettersTyped = 0;
                 SetNewWord();
             }
@@ -89,11 +90,7 @@ public class EnemyFightLogic : MonoBehaviour
         wordsWrite.text += "</color>";
         if (sentence != null) wordsWrite.text += sentence[2];
     }
-    /*public void ChangeTurn(bool turn)
-    {
-        isEnemyTurn = turn;
-    }*/
-    void OnWordComplete(int streak)
+    void GetDamage(int streak)
     {
         int additionalDamage = streak % 5 == 0 ? 10 : 0;
         persona.GetDamage(10 + additionalDamage);
@@ -104,7 +101,7 @@ public class EnemyFightLogic : MonoBehaviour
             MySceneManager.SetScene(1);
         }
         hpText.text = "Current health: " + persona.getHealth() + "/" + maxHp;
-        OnGetDamage?.Invoke(10+additionalDamage);
+        OnGetDamage?.Invoke(10 + additionalDamage);
     }
 
     public EnemyPersona getCurrentPersona() => persona;

@@ -134,9 +134,8 @@ GameObject:
   - component: {fileID: 79980433}
   - component: {fileID: 79980436}
   - component: {fileID: 79980435}
-  - component: {fileID: 79980434}
   m_Layer: 5
-  m_Name: Score
+  m_Name: Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,18 +161,6 @@ RectTransform:
   m_AnchoredPosition: {x: 960, y: -58}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &79980434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 79980432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb337e8ae09bb8f44b9c8dbe69b7f9c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &79980435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,11 +600,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c226e16765333ef408a33f43e35e26dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpText: {fileID: 540170847}
-  wordsWrite: {fileID: 952467810}
+  OnWordComplete:
+    m_PersistentCalls:
+      m_Calls: []
   OnGetDamage:
     m_PersistentCalls:
       m_Calls: []
+  hpText: {fileID: 540170847}
+  wordsWrite: {fileID: 952467810}
 --- !u!4 &354010066
 Transform:
   m_ObjectHideFlags: 0
@@ -1729,6 +1719,7 @@ GameObject:
   - component: {fileID: 1109257638}
   - component: {fileID: 1109257637}
   - component: {fileID: 1109257636}
+  - component: {fileID: 1109257639}
   m_Layer: 0
   m_Name: character
   m_TagString: Untagged
@@ -1816,6 +1807,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1109257639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1109257635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5590910c45fd9f944ba663ae83da155e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  maxHP: 100
 --- !u!1 &1122125307
 GameObject:
   m_ObjectHideFlags: 0

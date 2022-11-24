@@ -88,7 +88,7 @@ public class TextWriting : MonoBehaviour
     void TimeManager()
     {
         timeLeft -= Time.deltaTime;
-        timeGUI.text = "Time left: " + timeLeft;
+        timeGUI.text = "" + System.Math.Round(timeLeft,2);
         if (timeLeft <= 0)
         {
             OnTimeElapsed();
@@ -98,7 +98,6 @@ public class TextWriting : MonoBehaviour
     {
         timeGUI.text = "Time left: " + 0;
         timeLeft = timeForWord;
-        //enemy.ChangeTurn(true);
         print("elapsed");
         fightL.ChangeTurn(true);
     }
