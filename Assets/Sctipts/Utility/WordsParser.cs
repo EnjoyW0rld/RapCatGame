@@ -7,10 +7,14 @@ public class WordsParser : MonoBehaviour
 {
     [SerializeField] string pathPlayer = "sentence.txt";
     [SerializeField] string pathEnemy = "test.txt";
+    string subFolder = "BattleText/";
     static string[] words;
 
-    static List<string[]> sentences;
-    static List<string[]> enemyWords;
+    //static List<string[]> sentences;
+    //static List<string[]> enemyWords;
+
+    static Dictionary<string, List<string[]>> playerWordsPool;
+    static Dictionary<string, List<string[]>> enemyWordsPool;
 
     [SerializeField] static Dictionary<string, string> allWordsExpl;
     static List<string> notOnDictionary;
@@ -21,14 +25,31 @@ public class WordsParser : MonoBehaviour
     void Awake()
     {
         if (finishedParsing) return;
+        //Checking if directory exists
+        if (!Directory.Exists(subFolder))
+        {
+            Directory.CreateDirectory(subFolder);
+        }
+        string[] files = Directory.GetFiles(subFolder);
+        //create all the lists
+
 
         notOnDictionary = new List<string>();
         allWordsExpl = new Dictionary<string, string>();
-        enemyWords = new List<string[]>();
+        playerWordsPool = new Dictionary<string, List<string[]>>();
+        enemyWordsPool = new Dictionary<string, List<string[]>>();
+        //enemyWords = new List<string[]>()
+        //print(files[0]);
+        //print(files[1]);
+        for (int i = 0; i < files.Length; i++)
+        {
+            ParseAndApply(files[i]);
 
-        words = GetStrings(pathPlayer);
-        sentences = ParseSentences(pathPlayer);
-        enemyWords = ParseSentences(pathEnemy, false);
+        }
+
+        //words = GetStrings(subFolder + pathPlayer);
+        //sentences = ParseSentences(subFolder + pathPlayer);
+        //enemyWords = ParseSentences(subFolder + pathEnemy, false);
         finishedParsing = true;
     }
 
@@ -56,7 +77,30 @@ public class WordsParser : MonoBehaviour
         return words[r];
     }
 
-    List<string[]> ParseSentences(string _path, bool forPlayer = true)
+    void ParseAndApply(string _path, bool forPlayer = true)
+    {
+        List<string[]> tmp = ParseSentences(_path, out string[] tag);
+
+        if (tag == null)
+        {
+            Debug.LogError("tag is null");
+            return;
+        }
+        //print(tag[1]);
+        switch (tag[0])
+        {
+            case "Player":
+                playerWordsPool.Add(tag[1], tmp);
+                break;
+            case "Enemy":
+                enemyWordsPool.Add(tag[1], tmp);
+                break;
+            default:
+                Debug.LogError("No suitable tag found");
+                break;
+        }
+    }
+    List<string[]> ParseSentences(string _path, out string[] tags, bool forPlayer = true)
     {
         if (!File.Exists(_path))
         {
@@ -65,12 +109,23 @@ public class WordsParser : MonoBehaviour
         }
 
         List<string[]> tmpSent = new List<string[]>();
+        tags = null;
+        bool parsedTag = false;
 
         using (StreamReader sr = new StreamReader(_path))
         {
+            //tags;
             string str;
             while ((str = sr.ReadLine()) != null)
             {
+                if (!parsedTag)
+                {
+                    tags = str.Split(':');
+                    parsedTag = true;
+                    continue;
+                }
+
+
                 string[] tmp;
                 if (str.Contains('-')) //if there is explanation in the file
                 {
@@ -81,11 +136,15 @@ public class WordsParser : MonoBehaviour
                 else //if no explanation provided
                 {
                     tmp = Subdivide(str);
-                    if (forPlayer) notOnDictionary.Add(tmp[1]);
+                    //if (forPlayer) notOnDictionary.Add(tmp[1]);
+                    if (tags[0] == "Player") notOnDictionary.Add(tmp[1]);
                 }
                 tmpSent.Add(tmp);
             }
         }
+        print(_path);
+        print(tags[0]);
+        print(tags[1]);
 
         return tmpSent;
     }
@@ -121,6 +180,7 @@ public class WordsParser : MonoBehaviour
         }
         return tmp;
     }
+    /*
     public static string[] GetRandomSentence(bool playerPool = true)
     {
         if (playerPool)
@@ -134,7 +194,31 @@ public class WordsParser : MonoBehaviour
             return enemyWords[r];
         }
     }
-
+    */
+    public static Queue<string[]> GetCurrentBattleQueue(bool playerPool, string key)
+    {
+        List<string[]> tmp;
+        if (playerPool)
+        {
+            tmp = playerWordsPool[key];
+        }
+        else tmp = enemyWordsPool[key];
+        return new Queue<string[]>(tmp);
+    }
+    public static string[] GetRandomSentence(bool playerPool, string key)
+    {
+        List<string[]> currentPool;
+        if (playerPool)
+        {
+            currentPool = playerWordsPool[key];
+        }
+        else
+        {
+            currentPool = enemyWordsPool[key];
+        }
+        int r = Random.Range(0, currentPool.Count);
+        return currentPool[r];
+    }
     public static string GetExplanation(string word)
     {
         return allWordsExpl[word];

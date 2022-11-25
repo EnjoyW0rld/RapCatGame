@@ -68,7 +68,7 @@ public class EnemyFightLogic : MonoBehaviour
 
     void SetNewWord()
     {
-        sentence = WordsParser.GetRandomSentence(false);
+        sentence = WordsParser.GetRandomSentence(false,persona.getName());
         currentWord = sentence[1].ToCharArray();
         ShowText();
     }

@@ -11,7 +11,8 @@ public class TextWriting : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI text;
     [SerializeField] TextMeshProUGUI timeGUI;
-    
+
+    Queue<string[]> currentQueue;
     string[] sentence;
     int[] values;
 
@@ -30,10 +31,11 @@ public class TextWriting : MonoBehaviour
     void Start()
     {
         enemy = FindObjectOfType<EnemyFightLogic>();
-
         timeLeft = timeForWord;
         values = (int[])System.Enum.GetValues(typeof(KeyCode));
+        
         fightL = FindObjectOfType<GeneralFightLogic>();
+        currentQueue = WordsParser.GetCurrentBattleQueue(true,enemy.getCurrentPersona().getName());
         SetNewWord();
     }
 
@@ -70,7 +72,7 @@ public class TextWriting : MonoBehaviour
             ShowText();
         }
 
-        ShowText();
+        //ShowText();
     }
 
     KeyCode GetPressedKey()
@@ -98,13 +100,12 @@ public class TextWriting : MonoBehaviour
     {
         timeGUI.text = "Time left: " + 0;
         timeLeft = timeForWord;
-        print("elapsed");
         fightL.ChangeTurn(true);
     }
     void SetNewWord()
     {
-        sentence = WordsParser.GetRandomSentence(); //get random sentence from pool
-
+        //sentence = WordsParser.GetRandomSentence(true,enemy.getCurrentPersona().getName()); //get random sentence from pool
+        sentence = currentQueue.Dequeue();
         //check if word has explanation and is not on the dictionary yet
         if (WordsParser.HasExplanation(sentence[1]) && !GameInformation.Instance.IsInDictionary(sentence[1])) 
         {
