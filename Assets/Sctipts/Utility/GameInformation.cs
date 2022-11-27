@@ -8,8 +8,9 @@ public class GameInformation : MonoBehaviour
     private static GameInformation instance;
     EnemyPersona pers;
 
-    [HideInInspector]public Dictionary<string, string> learnedWords { get; private set; }
+    [HideInInspector] public Dictionary<string, string> learnedWords { get; private set; }
     [HideInInspector] public int reputationPoints { get; private set; }
+    [HideInInspector] List<string> seenWords;
 
     public static GameInformation Instance { get => instance; }
 
@@ -19,6 +20,7 @@ public class GameInformation : MonoBehaviour
         {
             instance = this;
             learnedWords = new Dictionary<string, string>();
+            seenWords = new List<string>();
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -47,4 +49,9 @@ public class GameInformation : MonoBehaviour
     {
         learnedWords.Add(word, explanation);
     }
+    public void AddToSeen(string word)
+    {
+        if (!seenWords.Contains(word)) seenWords.Add(word);
+    }
+    public bool KnowWord(string word) => seenWords.Contains(word);
 }

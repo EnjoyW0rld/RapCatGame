@@ -21,7 +21,7 @@ public class TextWriting : MonoBehaviour
     int currentStreak = 0;
 
     //time variables
-    [SerializeField]float timeForWord;
+    [SerializeField] float timeForWord;
     float timeLeft;
     //Other script instances
     EnemyFightLogic enemy;
@@ -33,9 +33,9 @@ public class TextWriting : MonoBehaviour
         enemy = FindObjectOfType<EnemyFightLogic>();
         timeLeft = timeForWord;
         values = (int[])System.Enum.GetValues(typeof(KeyCode));
-        
+
         fightL = FindObjectOfType<GeneralFightLogic>();
-        currentQueue = WordsParser.GetCurrentBattleQueue(true,enemy.getCurrentPersona().getName());
+        currentQueue = WordsParser.GetCurrentBattleQueue(true, enemy.getCurrentPersona().getName());
         SetNewWord();
     }
 
@@ -64,15 +64,16 @@ public class TextWriting : MonoBehaviour
             if (lettersTyped == currentWord.Length)
             {
                 timeLeft = timeForWord;
+                GameInformation.Instance.AddToSeen(sentence[1]);
                 SetNewWord();
                 lettersTyped = 0;
                 currentStreak++;
                 onComplete?.Invoke(currentStreak);
             }
-            ShowText();
+            //ShowText();
         }
 
-        //ShowText();
+        ShowText();
     }
 
     KeyCode GetPressedKey()
@@ -90,7 +91,7 @@ public class TextWriting : MonoBehaviour
     void TimeManager()
     {
         timeLeft -= Time.deltaTime;
-        timeGUI.text = "" + System.Math.Round(timeLeft,2);
+        timeGUI.text = "" + System.Math.Round(timeLeft, 2);
         if (timeLeft <= 0)
         {
             OnTimeElapsed();
@@ -98,18 +99,19 @@ public class TextWriting : MonoBehaviour
     }
     void OnTimeElapsed()
     {
+        lettersTyped = 0;
         timeGUI.text = "Time left: " + 0;
         timeLeft = timeForWord;
         fightL.ChangeTurn(true);
     }
     void SetNewWord()
     {
-        //sentence = WordsParser.GetRandomSentence(true,enemy.getCurrentPersona().getName()); //get random sentence from pool
         sentence = currentQueue.Dequeue();
+
         //check if word has explanation and is not on the dictionary yet
-        if (WordsParser.HasExplanation(sentence[1]) && !GameInformation.Instance.IsInDictionary(sentence[1])) 
+        if (WordsParser.HasExplanation(sentence[1]) && !GameInformation.Instance.IsInDictionary(sentence[1]))
         {
-            GameInformation.Instance.AddWord(sentence[1],WordsParser.GetExplanation(sentence[1]));
+            GameInformation.Instance.AddWord(sentence[1], WordsParser.GetExplanation(sentence[1]));
             OnNewWordAppear?.Invoke();
         }
         currentWord = sentence[1].ToCharArray();
@@ -119,30 +121,92 @@ public class TextWriting : MonoBehaviour
     {
         return c == currentWord[lettersTyped] || char.ToUpper(c) == currentWord[lettersTyped];
     }
-    void ShowText()
+    void ShowText(bool f = true)
     {
+        bool isFirstTime = !GameInformation.Instance.KnowWord(sentence[1]);//GameInformation.Instance.IsInDictionary(sentence[1]);
         text.text = " ";
         if (sentence != null)
         {
             text.text += sentence[0];
         }
-        text.text += "<color=#c0c0c0ff>";
-        text.text += "<color=#ff0000ff>";
+        text.text += "<color=#c0c0c0ff>"; //grey text open tag
+        text.text += "<color=#ff0000ff>"; //red text open tag
+        //text.text += currentWord[0];
+
         for (int i = 0; i < currentWord.Length; i++)
         {
+            if (isFirstTime)
+            {
+                //text.color = Color.white;
+                if (i == lettersTyped)
+                {
+                    text.text += "</color>"; //red text close tag
+                }
+                text.text += currentWord[i];
+            }
+            else
+            {
+                if (i < lettersTyped)
+                {
+                    text.text += currentWord[i];
+                }
+                else
+                {
+                    text.text += '_';
+                }
+
+            }
+            /*
             //text.color = Color.white;
             if (i == lettersTyped)
             {
-                text.text += "</color>";
+                text.text += "</color>"; //red text close tag
             }
-
             text.text += currentWord[i];
+             */
+
         }
+
         text.text += "</color>";
+        //text.text += "</color>";
         if (sentence != null)
         {
             text.text += sentence[2];
         }
 
+    }
+    void ShowText()
+    {
+        bool isFirstTime = !GameInformation.Instance.KnowWord(sentence[1]);
+        
+        text.text = "";
+        text.text += sentence[0]; //first part of sentence add
+
+        text.text += "<color=#c0c0c0ff>"; //grey text open tag
+        text.text += "<color=#ff0000ff>"; //red text open tag
+
+        for (int i = 0; i < currentWord.Length; i++)
+        {
+            if (isFirstTime)
+            {
+                if(i == lettersTyped) text.text += "</color>";
+                text.text += currentWord[i];
+            }
+            else
+            {
+                if(i == lettersTyped) text.text += "</color>";
+                if (i == 0)
+                {
+                    text.text += currentWord[i];
+                }
+                else if (i < lettersTyped) text.text += currentWord[i];
+                else text.text += "_";
+
+            }
+        }
+
+
+        text.text += "</color>";
+        text.text += sentence[2];
     }
 }

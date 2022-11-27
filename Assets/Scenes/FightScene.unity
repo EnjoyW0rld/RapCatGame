@@ -2472,7 +2472,7 @@ MonoBehaviour:
         m_CallState: 2
   text: {fileID: 952467810}
   timeGUI: {fileID: 79980435}
-  timeForWord: 3
+  timeForWord: 4
 --- !u!114 &1850204469
 MonoBehaviour:
   m_ObjectHideFlags: 0

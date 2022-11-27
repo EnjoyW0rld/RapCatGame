@@ -142,9 +142,6 @@ public class WordsParser : MonoBehaviour
                 tmpSent.Add(tmp);
             }
         }
-        print(_path);
-        print(tags[0]);
-        print(tags[1]);
 
         return tmpSent;
     }
