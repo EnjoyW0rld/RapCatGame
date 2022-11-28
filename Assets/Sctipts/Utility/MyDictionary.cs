@@ -3,39 +3,29 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class MyDictionary : MonoBehaviour,IClickable
+public class MyDictionary : MonoBehaviour, IClickable
 {
     //static MyDictionary instance;
     //public static MyDictionary Instance { get { return instance; } }
     //Dictionary<string, string> dict;
 
-    [SerializeField] GameObject dictionaryScreen;
+    //[SerializeField] GameObject dictionaryScreen;
+    //[SerializeField] TextMeshProUGUI textPlace;
+    [SerializeField] Canvas canvas;
     [SerializeField] TextMeshProUGUI textPlace;
     void Awake()
     {
-     /*   if (instance == null)
+
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
-      //      instance = this;
-      //      DontDestroyOnLoad(gameObject);
-            //dict = new Dictionary<string, string>();
-            //dict.Add("ssssssss", "dsadsadsa");
-            //dict.Add(";slsls", "mkgfdklkldf");
-            //dict.Add("peopop", "klfdsepwo");
+            canvas.enabled = !canvas.enabled;
+            if (canvas.enabled) WriteText();
         }
-        else
-        {
-            Destroy(gameObject);
-     }*/   
     }
 
-    /*public bool IsInDictionary(string word)
-    {
-        return dict.ContainsKey(word);
-    }
-    public void AddWord(string word, string explanation)
-    {
-        dict.Add(word, explanation);
-    }*/
     void WriteText()
     {
         textPlace.text = " ";

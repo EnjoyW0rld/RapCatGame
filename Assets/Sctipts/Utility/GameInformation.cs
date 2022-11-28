@@ -11,6 +11,7 @@ public class GameInformation : MonoBehaviour
     [HideInInspector] public Dictionary<string, string> learnedWords { get; private set; }
     [HideInInspector] public int reputationPoints { get; private set; }
     [HideInInspector] List<string> seenWords;
+    [HideInInspector] public int[] keyValues { get; private set; }
 
     public static GameInformation Instance { get => instance; }
 
@@ -21,6 +22,7 @@ public class GameInformation : MonoBehaviour
             instance = this;
             learnedWords = new Dictionary<string, string>();
             seenWords = new List<string>();
+            keyValues = (int[])System.Enum.GetValues(typeof(KeyCode));
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -54,4 +56,15 @@ public class GameInformation : MonoBehaviour
         if (!seenWords.Contains(word)) seenWords.Add(word);
     }
     public bool KnowWord(string word) => seenWords.Contains(word);
+    public KeyCode GetPressedKey()
+    {
+        for (int i = 0; i < keyValues.Length; i++)
+        {
+            if (Input.GetKeyDown((KeyCode)keyValues[i]))
+            {
+                return (KeyCode)keyValues[i];
+            }
+        }
+        return KeyCode.None;
+    }
 }

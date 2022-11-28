@@ -33,7 +33,7 @@ public class TextWriting : MonoBehaviour
     {
         enemy = FindObjectOfType<EnemyFightLogic>();
         timeLeft = timeForWord;
-        values = (int[])System.Enum.GetValues(typeof(KeyCode));
+        values = GameInformation.Instance.keyValues;
 
         //variable for enemy fight logic
         fightL = FindObjectOfType<GeneralFightLogic>();
@@ -206,6 +206,42 @@ public class TextWriting : MonoBehaviour
 
         text.text += "</color>";
         text.text += sentence[2];
+    }
+    public static void ShowText(ref TextMeshProUGUI textGUI, string[] sentence,int lettersTyped)
+    {
+        bool isFirstTime = !GameInformation.Instance.KnowWord(sentence[1]);
+        char[] _currentWord = sentence[1].ToCharArray();
+
+
+        textGUI.text = "";
+        textGUI.text += sentence[0]; //first part of sentence add
+
+        textGUI.text += "<color=#c0c0c0ff>"; //grey text open tag
+        textGUI.text += "<color=#ff0000ff>"; //red text open tag
+
+        for (int i = 0; i < _currentWord.Length; i++)
+        {
+            if (isFirstTime)
+            {
+                if (i == lettersTyped) textGUI.text += "</color>";
+                textGUI.text += _currentWord[i];
+            }
+            else
+            {
+                if (i == lettersTyped) textGUI.text += "</color>";
+                if (i == 0)
+                {
+                    textGUI.text += _currentWord[i];
+                }
+                else if (i < lettersTyped) textGUI.text += _currentWord[i];
+                else textGUI.text += "_";
+
+            }
+        }
+
+
+        textGUI.text += "</color>";
+        textGUI.text += sentence[2];
     }
     void WordComplete()
     {

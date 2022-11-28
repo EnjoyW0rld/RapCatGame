@@ -119,17 +119,17 @@ public class WordsParser : MonoBehaviour
         {
             string[] expl = str.Split('-');
             tmp = Subdivide(expl[0]);
-            allWordsExpl.Add(tmp[1], expl[1]);
+            AddExplanation(tmp[1], expl[1]);//allWordsExpl.Add(tmp[1].ToLower(), expl[1]);
         }
         else
         {
             tmp = Subdivide(str);
-            notOnDictionary.Add(tmp[1]);
+            notOnDictionary.Add(tmp[1].ToLower());
         }
         return tmp;
 
     }
-    string[] Subdivide(string str)
+    public static string[] Subdivide(string str)
     {
         string[] tmp = new string[3];
 
@@ -173,8 +173,23 @@ public class WordsParser : MonoBehaviour
     
     public static string GetExplanation(string word)
     {
-        return allWordsExpl[word];
+        return allWordsExpl[word.ToLower()];
     }
-    public static bool HasExplanation(string word) => !notOnDictionary.Contains(word);
+    public static bool HasExplanation(string word) => allWordsExpl.ContainsKey(word.ToLower());//!notOnDictionary.Contains(word.ToLower());
 
+    public static void AddToNotOnDictionary(string word)
+    {
+        //if (HasExplanation(word.ToLower())) return;
+        if (!notOnDictionary.Contains(word.ToLower()))
+        {
+            notOnDictionary.Add(word.ToLower());
+        }
+    }
+    public static void AddExplanation(string word,string explanation)
+    {
+        if (!allWordsExpl.ContainsKey(word.ToLower()))
+        {
+            allWordsExpl.Add(word.ToLower(), explanation);
+        }
+    }
 }
