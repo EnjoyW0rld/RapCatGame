@@ -224,7 +224,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   p:
     health: 100
-    typeSpeed: 0.5
+    timeToRead: 5
+    name: nothing
 --- !u!212 &364159104
 SpriteRenderer:
   m_ObjectHideFlags: 0

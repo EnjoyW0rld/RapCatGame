@@ -8,13 +8,12 @@ public class WordsParser : MonoBehaviour
     [SerializeField] string pathPlayer = "sentence.txt";
     [SerializeField] string pathEnemy = "test.txt";
     string subFolder = "BattleText/";
-    static string[] words;
 
     //static List<string[]> sentences;
     //static List<string[]> enemyWords;
 
     static Dictionary<string, List<string[]>> playerWordsPool;
-    static Dictionary<string, List<string[]>> enemyWordsPool;
+    static Dictionary<string, List<string>> enemyWordsPool;
 
     [SerializeField] static Dictionary<string, string> allWordsExpl;
     static List<string> notOnDictionary;
@@ -31,25 +30,20 @@ public class WordsParser : MonoBehaviour
             Directory.CreateDirectory(subFolder);
         }
         string[] files = Directory.GetFiles(subFolder);
+
+
         //create all the lists
-
-
         notOnDictionary = new List<string>();
         allWordsExpl = new Dictionary<string, string>();
         playerWordsPool = new Dictionary<string, List<string[]>>();
-        enemyWordsPool = new Dictionary<string, List<string[]>>();
-        //enemyWords = new List<string[]>()
-        //print(files[0]);
-        //print(files[1]);
+        enemyWordsPool = new Dictionary<string, List<string>>();
+
+
         for (int i = 0; i < files.Length; i++)
         {
             ParseAndApply(files[i]);
-
         }
 
-        //words = GetStrings(subFolder + pathPlayer);
-        //sentences = ParseSentences(subFolder + pathPlayer);
-        //enemyWords = ParseSentences(subFolder + pathEnemy, false);
         finishedParsing = true;
     }
 
@@ -71,79 +65,69 @@ public class WordsParser : MonoBehaviour
         }
         return strings.ToArray();
     }
-    public static string GetRandomString()
-    {
-        int r = Random.Range(0, words.Length);
-        return words[r];
-    }
 
     void ParseAndApply(string _path, bool forPlayer = true)
     {
-        List<string[]> tmp = ParseSentences(_path, out string[] tag);
+        bool foundTag = false;
+        string[] tags = null;
 
-        if (tag == null)
-        {
-            Debug.LogError("tag is null");
-            return;
-        }
-        //print(tag[1]);
-        switch (tag[0])
-        {
-            case "Player":
-                playerWordsPool.Add(tag[1], tmp);
-                break;
-            case "Enemy":
-                enemyWordsPool.Add(tag[1], tmp);
-                break;
-            default:
-                Debug.LogError("No suitable tag found");
-                break;
-        }
-    }
-    List<string[]> ParseSentences(string _path, out string[] tags, bool forPlayer = true)
-    {
-        if (!File.Exists(_path))
-        {
-            Debug.LogError("File not found, new blank created!");
-            File.Create(_path);
-        }
-
-        List<string[]> tmpSent = new List<string[]>();
-        tags = null;
-        bool parsedTag = false;
-
+        //temporary lists
+        List<string> enemyWords = new List<string>();
+        List<string[]> playerWords = new List<string[]>();
         using (StreamReader sr = new StreamReader(_path))
         {
-            //tags;
             string str;
             while ((str = sr.ReadLine()) != null)
             {
-                if (!parsedTag)
+                if (!foundTag)
                 {
                     tags = str.Split(':');
-                    parsedTag = true;
+                    foundTag = true;
                     continue;
                 }
 
-
-                string[] tmp;
-                if (str.Contains('-')) //if there is explanation in the file
+                switch (tags[0])
                 {
-                    string[] expl = str.Split('-');
-                    tmp = Subdivide(expl[0]);
-                    allWordsExpl.Add(tmp[1], expl[1]);
+                    case "Player":
+                        //playerWordsPool.Add(tags[1], ParsePlayer(str));
+                        playerWords.Add(ParsePlayer(str));
+                        break;
+                    case "Enemy":
+                        enemyWords.Add(str);
+                        //enemyWordsPool.Add(tags[1], str);
+                        break;
                 }
-                else //if no explanation provided
-                {
-                    tmp = Subdivide(str);
-                    //if (forPlayer) notOnDictionary.Add(tmp[1]);
-                    if (tags[0] == "Player") notOnDictionary.Add(tmp[1]);
-                }
-                tmpSent.Add(tmp);
+            }
+            //add to dictionary
+            switch (tags[0])
+            {
+                case "Player":
+                    playerWordsPool.Add(tags[1], playerWords);
+                    break;
+                case "Enemy":
+                    enemyWordsPool.Add(tags[1], enemyWords);
+                    break;
             }
         }
 
-        return tmpSent;
+    }
+    
+    string[] ParsePlayer(string str)
+    {
+        string[] tmp;
+        if (str.Contains('-'))
+        {
+            string[] expl = str.Split('-');
+            tmp = Subdivide(expl[0]);
+            allWordsExpl.Add(tmp[1], expl[1]);
+        }
+        else
+        {
+            tmp = Subdivide(str);
+            notOnDictionary.Add(tmp[1]);
+        }
+        return tmp;
+
     }
     string[] Subdivide(string str)
     {
@@ -177,50 +161,20 @@ public class WordsParser : MonoBehaviour
         }
         return tmp;
     }
-    /*
-    public static string[] GetRandomSentence(bool playerPool = true)
+    
+    public static Queue<string> GetEnemyBattleQueue(string key)
     {
-        if (playerPool)
-        {
-            int r = Random.Range(0, sentences.Count);
-            return sentences[r];
-        }
-        else
-        {
-            int r = Random.Range(0, enemyWords.Count);
-            return enemyWords[r];
-        }
+        return new Queue<string>(enemyWordsPool[key]);
     }
-    */
-    public static Queue<string[]> GetCurrentBattleQueue(bool playerPool, string key)
+    public static Queue<string[]> GetPlayerBattleQueue(string key)
     {
-        List<string[]> tmp;
-        if (playerPool)
-        {
-            tmp = playerWordsPool[key];
-        }
-        else tmp = enemyWordsPool[key];
-        return new Queue<string[]>(tmp);
+            return new Queue<string[]>(playerWordsPool[key]);
     }
-    public static string[] GetRandomSentence(bool playerPool, string key)
-    {
-        List<string[]> currentPool;
-        if (playerPool)
-        {
-            currentPool = playerWordsPool[key];
-        }
-        else
-        {
-            currentPool = enemyWordsPool[key];
-        }
-        int r = Random.Range(0, currentPool.Count);
-        return currentPool[r];
-    }
+    
     public static string GetExplanation(string word)
     {
         return allWordsExpl[word];
     }
     public static bool HasExplanation(string word) => !notOnDictionary.Contains(word);
-
 
 }

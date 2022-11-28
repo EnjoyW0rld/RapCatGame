@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class TextWriting : MonoBehaviour
 {
     public UnityEvent<int> onComplete;
+    public UnityEvent onError;
     public UnityEvent OnNewWordAppear;
 
     [SerializeField] TextMeshProUGUI text;
@@ -34,8 +35,10 @@ public class TextWriting : MonoBehaviour
         timeLeft = timeForWord;
         values = (int[])System.Enum.GetValues(typeof(KeyCode));
 
+        //variable for enemy fight logic
         fightL = FindObjectOfType<GeneralFightLogic>();
-        currentQueue = WordsParser.GetCurrentBattleQueue(true, enemy.getCurrentPersona().getName());
+        //get queue of words for this fight
+        currentQueue = WordsParser.GetPlayerBattleQueue(enemy.getCurrentPersona().getName());
         SetNewWord();
     }
 
@@ -58,17 +61,10 @@ public class TextWriting : MonoBehaviour
             else
             {
                 OnTimeElapsed();
-                currentStreak = 0;
-                lettersTyped = 0;
             }
             if (lettersTyped == currentWord.Length)
             {
-                timeLeft = timeForWord;
-                GameInformation.Instance.AddToSeen(sentence[1]);
-                SetNewWord();
-                lettersTyped = 0;
-                currentStreak++;
-                onComplete?.Invoke(currentStreak);
+                WordComplete();
             }
             //ShowText();
         }
@@ -99,7 +95,9 @@ public class TextWriting : MonoBehaviour
     }
     void OnTimeElapsed()
     {
+        onError?.Invoke();
         lettersTyped = 0;
+        currentStreak = 0;
         timeGUI.text = "Time left: " + 0;
         timeLeft = timeForWord;
         fightL.ChangeTurn(true);
@@ -208,5 +206,15 @@ public class TextWriting : MonoBehaviour
 
         text.text += "</color>";
         text.text += sentence[2];
+    }
+    void WordComplete()
+    {
+            timeLeft = timeForWord;
+            GameInformation.Instance.AddToSeen(sentence[1]);
+            SetNewWord();
+            lettersTyped = 0;
+            currentStreak++;
+            onComplete?.Invoke(currentStreak);
+        
     }
 }

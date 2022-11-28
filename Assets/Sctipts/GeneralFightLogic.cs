@@ -9,6 +9,7 @@ public class GeneralFightLogic : MonoBehaviour
     [SerializeField] TextMeshProUGUI nameBox;
     [SerializeField] string characterName = "Milly the Silly";
     [SerializeField] public UnityEvent<bool> OnTurnChange;
+
     bool _isEnemyTurn;
     public bool isEnemyTurn { get => _isEnemyTurn; }
 

@@ -11,13 +11,15 @@ public class EnemyFightLogic : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI hpText;
     [SerializeField] TextMeshProUGUI wordsWrite;
+    Queue<string> battlePhrases;
 
     EnemyPersona persona;
     int maxHp;
 
     GeneralFightLogic fightL;
 
-    string[] sentence;
+    string sentence;
+    //string[] sentence;
     char[] currentWord;
     int lettersTyped;
 
@@ -28,12 +30,14 @@ public class EnemyFightLogic : MonoBehaviour
         persona = GameInformation.Instance.GetCurrentEnemy();
         FindObjectOfType<TextWriting>().onComplete.AddListener(GetDamage);
         fightL = FindObjectOfType<GeneralFightLogic>();
+        fightL.OnTurnChange.AddListener(OnTurnChange);
 
         if (persona != null)
         {
             maxHp = persona.getHealth();
-            toUpdate = persona.getTypeSpeed();
+            toUpdate = persona.getTimeToRead();
         }
+        battlePhrases = WordsParser.GetEnemyBattleQueue(persona.getName());
         SetNewWord();
     }
 
@@ -42,9 +46,18 @@ public class EnemyFightLogic : MonoBehaviour
     {
         if (!fightL.isEnemyTurn) return;
         toUpdate -= Time.deltaTime;
+        ShowText();
+        if (toUpdate < 0)
+        {
+            //OnWordComplete?.Invoke();
+            fightL.ChangeTurn(false);
+        }
+        return;
+
+
         if (toUpdate <= 0)
         {
-            toUpdate = persona.getTypeSpeed();
+            toUpdate = persona.getTimeToRead();
             int r = Random.Range(0, 100);
             if (r >= 20)
             {
@@ -68,28 +81,15 @@ public class EnemyFightLogic : MonoBehaviour
 
     void SetNewWord()
     {
-        sentence = WordsParser.GetRandomSentence(false,persona.getName());
-        currentWord = sentence[1].ToCharArray();
+        sentence = battlePhrases.Dequeue();
         ShowText();
     }
 
     void ShowText()
     {
-        wordsWrite.text = " ";
-        if (sentence != null) wordsWrite.text += sentence[0];
-        wordsWrite.text += "<color=#c0c0c0ff>";
-        wordsWrite.text += "<color=#ff0000ff>";
-        for (int i = 0; i < currentWord.Length; i++)
-        {
-            if (i == lettersTyped)
-            {
-                wordsWrite.text += "</color>";
-            }
-            wordsWrite.text += currentWord[i];
-        }
-        wordsWrite.text += "</color>";
-        if (sentence != null) wordsWrite.text += sentence[2];
+        wordsWrite.text = sentence;
     }
+
     void GetDamage(int streak)
     {
         int additionalDamage = streak % 5 == 0 ? 10 : 0;
@@ -103,6 +103,11 @@ public class EnemyFightLogic : MonoBehaviour
         hpText.text = "Current health: " + persona.getHealth() + "/" + maxHp;
         OnGetDamage?.Invoke(10 + additionalDamage);
     }
-
     public EnemyPersona getCurrentPersona() => persona;
+    void OnTurnChange(bool isEnemyTurn)
+    {
+        OnWordComplete?.Invoke();
+        SetNewWord();
+    }
+
 }
