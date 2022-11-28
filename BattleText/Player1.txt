@@ -1,11 +1,11 @@
-Player:nothing
-<Bloody> hell, you’re ugly! You look like you have reached your 9th life already!-= places emphasis on a comment or another word and it is regarded as a mild swear word, but it is generally acceptable
-Go back to where you belong, in the <bog>.-= a toilet
-Look at that <mug> face of yours!-= a fool or a stupid person, they are easily deceived by other people
-What are you looking at, <chav>? Running out of words?-= a young hooligan who normally starts fights and makes trouble, usually seen as lower class
-The hood doesn’t have enough space for stupid <gits> like you!-= used to describe a person, usually a man, who is very unpleasant, incompetent, or is an idiot
-Cat got your <tongue>?
-If you looked in a <mirror> it would break.
-If <disappointment> was a person, you’d be it!
-You’re the proof that we can live without <brains>!
-Did someone forget to <flush>? Oh, it's just your face.
+Player:Millie the Silly
+<Bloody> hell, you’re ugly! You look like you have reached your 9th life already! 
+Are you sure you’re a cat? Because I swear you look like a <rat>! 
+Did someone forget to <flush>? Oh, it's just your face. 
+Go back to where you belong, in the <bog>.-= a toilet. 
+Even a <kitten> could beat you at this. 
+You look tired. Have you been <thinking>? 
+Look at that <mug> face of yours!-= a fool or a stupid person, they are easily deceived by other people. 
+Are you trying to <rap>? All I hear is crap! 
+What are you looking at, <chav>? Running out of words?-= a young hooligan who normally starts fights and makes trouble, usually seen as lower class. 
+The hood doesn’t have enough space for stupid <gits> like you!-= used to describe a person, usually a man, who is very unpleasant, incompetent, or is an idiot.
