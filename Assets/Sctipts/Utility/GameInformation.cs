@@ -13,6 +13,8 @@ public class GameInformation : MonoBehaviour
     [HideInInspector] List<string> seenWords;
     [HideInInspector] public int[] keyValues { get; private set; }
 
+    float masterVolume = 1;
+
     public static GameInformation Instance { get => instance; }
 
     private void Awake()
@@ -56,12 +58,14 @@ public class GameInformation : MonoBehaviour
         if (!seenWords.Contains(word)) seenWords.Add(word);
     }
     public bool KnowWord(string word) => seenWords.Contains(word);
+    public float getMasterVolume() => masterVolume;
     public KeyCode GetPressedKey()
     {
         for (int i = 0; i < keyValues.Length; i++)
         {
             if (Input.GetKeyDown((KeyCode)keyValues[i]))
             {
+                if ((KeyCode)keyValues[i] == KeyCode.LeftShift) continue;
                 return (KeyCode)keyValues[i];
             }
         }

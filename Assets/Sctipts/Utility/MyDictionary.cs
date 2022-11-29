@@ -21,7 +21,7 @@ public class MyDictionary : MonoBehaviour, IClickable
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            canvas.enabled = !canvas.enabled;
+            TurnCanvasOn();
             if (canvas.enabled) WriteText();
         }
     }
@@ -35,9 +35,14 @@ public class MyDictionary : MonoBehaviour, IClickable
             textPlace.text += "\n";
         }
     }
+    void TurnCanvasOn()
+    {
+        canvas.enabled = !canvas.enabled;
+    }
 
     public void OnClick()
     {
+        TurnCanvasOn();
         WriteText();
     }
 }

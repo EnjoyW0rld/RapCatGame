@@ -52,8 +52,8 @@ public class TextWriting : MonoBehaviour
 
         if (Input.anyKeyDown)
         {
-            k = GetPressedKey();
-
+            k = GameInformation.Instance.GetPressedKey();//GetPressedKey();
+            if (k == KeyCode.None) return;
             if (isLetterCorrect((char)k))
             {
                 lettersTyped++;
@@ -234,7 +234,7 @@ public class TextWriting : MonoBehaviour
                     textGUI.text += _currentWord[i];
                 }
                 else if (i < lettersTyped) textGUI.text += _currentWord[i];
-                else textGUI.text += "_";
+                else textGUI.text += " ";
 
             }
         }

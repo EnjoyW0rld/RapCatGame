@@ -49,6 +49,7 @@ public class EnemyFightLogic : MonoBehaviour
         ShowText();
         if (toUpdate < 0)
         {
+            toUpdate = persona.getTimeToRead();
             //OnWordComplete?.Invoke();
             fightL.ChangeTurn(false);
         }
