@@ -184,7 +184,7 @@ MonoBehaviour:
     health: 100
     timeToRead: 5
     name: nothing
-  nextScene: 3
+  nextScene: 4
   rpToEnter: 10
 --- !u!212 &182126586
 SpriteRenderer:
