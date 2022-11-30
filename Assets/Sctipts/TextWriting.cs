@@ -9,24 +9,26 @@ public class TextWriting : MonoBehaviour
     public UnityEvent<int> onComplete;
     public UnityEvent onError;
     public UnityEvent OnNewWordAppear;
+    public UnityEvent OnSentenceStart;
+    public UnityEvent OnCorrectLetter;
 
-    [SerializeField] TextMeshProUGUI text;
-    [SerializeField] TextMeshProUGUI timeGUI;
+    [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private TextMeshProUGUI timeGUI;
 
-    Queue<string[]> currentQueue;
-    string[] sentence;
-    int[] values;
+    private Queue<string[]> currentQueue;
+    private string[] sentence;
+    private int[] values;
 
-    char[] currentWord;
-    int lettersTyped = 0;
-    int currentStreak = 0;
+    private char[] currentWord;
+    private int lettersTyped = 0;
+    private int currentStreak = 0;
 
     //time variables
-    [SerializeField] float timeForWord;
-    float timeLeft;
+    [SerializeField] private float timeForWord;
+    private float timeLeft;
     //Other script instances
-    EnemyFightLogic enemy;
-    GeneralFightLogic fightL;
+    private EnemyFightLogic enemy;
+    private GeneralFightLogic fightL;
 
     // Start is called before the first frame update
     void Start()
@@ -56,6 +58,7 @@ public class TextWriting : MonoBehaviour
             if (k == KeyCode.None) return;
             if (isLetterCorrect((char)k))
             {
+                OnCorrectLetter?.Invoke();
                 lettersTyped++;
             }
             else
@@ -105,7 +108,7 @@ public class TextWriting : MonoBehaviour
     void SetNewWord()
     {
         sentence = currentQueue.Dequeue();
-
+        OnSentenceStart?.Invoke();
         //check if word has explanation and is not on the dictionary yet
         if (WordsParser.HasExplanation(sentence[1]) && !GameInformation.Instance.IsInDictionary(sentence[1]))
         {
@@ -247,10 +250,11 @@ public class TextWriting : MonoBehaviour
     {
             timeLeft = timeForWord;
             GameInformation.Instance.AddToSeen(sentence[1]);
-            SetNewWord();
             lettersTyped = 0;
             currentStreak++;
             onComplete?.Invoke(currentStreak);
+            if(currentQueue.Count > 0)
+            SetNewWord();
         
     }
 }

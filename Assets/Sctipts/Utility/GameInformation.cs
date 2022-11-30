@@ -57,7 +57,7 @@ public class GameInformation : MonoBehaviour
     {
         if (!seenWords.Contains(word)) seenWords.Add(word);
     }
-    public bool KnowWord(string word) => seenWords.Contains(word);
+    public bool KnowWord(string word) => seenWords.Contains(word.ToLower());
     public float getMasterVolume() => masterVolume;
     public KeyCode GetPressedKey()
     {

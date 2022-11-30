@@ -6,8 +6,8 @@ using UnityEngine.Events;
 public class PlayerFight : MonoBehaviour
 {
     [HideInInspector] public UnityEvent OnDeath;
-    [HideInInspector] public UnityEvent OnDamage;
-    [SerializeField] int maxHP;
+    public UnityEvent OnDamage;
+    [SerializeField] private int maxHP;
     int currentHp;
     // Start is called before the first frame update
     void Start()

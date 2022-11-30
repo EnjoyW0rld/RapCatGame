@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class EnemyFightLogic : MonoBehaviour
 {
     [HideInInspector] public UnityEvent OnWordComplete;
-    [HideInInspector] public UnityEvent<int> OnGetDamage;
+    public UnityEvent<int> OnGetDamage;
 
     [SerializeField] TextMeshProUGUI hpText;
     [SerializeField] TextMeshProUGUI wordsWrite;
@@ -55,29 +55,6 @@ public class EnemyFightLogic : MonoBehaviour
         }
         return;
 
-
-        if (toUpdate <= 0)
-        {
-            toUpdate = persona.getTimeToRead();
-            int r = Random.Range(0, 100);
-            if (r >= 20)
-            {
-                lettersTyped++;
-                ShowText();
-            }
-            else
-            {
-                fightL.ChangeTurn(false);
-                lettersTyped = 0;
-                ShowText();
-            }
-            if (lettersTyped == currentWord.Length)
-            {
-                OnWordComplete?.Invoke();
-                lettersTyped = 0;
-                SetNewWord();
-            }
-        }
     }
 
     void SetNewWord()
@@ -99,6 +76,7 @@ public class EnemyFightLogic : MonoBehaviour
         {
             int additionalRP = streak % 10 == 0 ? 20 : 0;
             GameInformation.Instance.UpdateRP(10 + additionalRP);
+            print("updated rp");
             MySceneManager.SetScene(1);
         }
         hpText.text = "Current health: " + persona.getHealth() + "/" + maxHp;

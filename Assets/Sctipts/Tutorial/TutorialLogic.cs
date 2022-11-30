@@ -6,18 +6,20 @@ using UnityEngine;
 
 public class TutorialLogic : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI textBox;
-    string subFolder = "BattleText/";
-    string enemyPath = "TutorialEnemy.txt";
-    string playerPath = "TutorialPlayer.txt";
+    [SerializeField] private TextMeshProUGUI textBox;
+    [SerializeField] private int nextScene;
 
-    Queue<string[]> playerQueue = new Queue<string[]>();
-    Queue<string> enemyQueue = new Queue<string>();
+    private string subFolder = "BattleText/";
+    private string enemyPath = "TutorialEnemy.txt";
+    private string playerPath = "TutorialPlayer.txt";
 
-    int letterTyped;
-    string[] sentence;
-    char[] currentWord;
-    bool playerTurn = false;
+    private Queue<string[]> playerQueue = new Queue<string[]>();
+    private Queue<string> enemyQueue = new Queue<string>();
+
+    private int letterTyped;
+    private string[] sentence;
+    private char[] currentWord;
+    private bool playerTurn = false;
 
     void Start()
     {
@@ -110,6 +112,7 @@ public class TutorialLogic : MonoBehaviour
     }
     void ChangeText()
     {
+        if (enemyQueue.Count == 0) MySceneManager.SetScene(nextScene);
         string enemySentence = enemyQueue.Dequeue();
         if (enemySentence == "-")
         {

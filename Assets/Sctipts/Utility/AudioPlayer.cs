@@ -13,16 +13,30 @@ public class AudioPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
     }
-
     // Update is called once per frame
     void Update()
     {
 
     }
-    void PlayRandom()
+    public void PlayRandom()
     {
-
+        m_AudioSource.clip = clips[Random.Range(0, clips.Length)];
+        m_AudioSource.Play();
+    }
+    public void PlaySound()
+    {
+        if (m_AudioSource.clip != clips[0]) m_AudioSource.clip = clips[0];
+        m_AudioSource.Play();
+    }
+    public void PlaySound(int index)
+    {
+        if (index > clips.Length - 1)
+        {
+            Debug.LogError("invalid index");
+            return;
+        }
+        if (m_AudioSource.clip != clips[index]) m_AudioSource.clip = clips[index];
+        m_AudioSource.Play();
     }
 }

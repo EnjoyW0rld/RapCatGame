@@ -189,6 +189,7 @@ public class WordsParser : MonoBehaviour
     {
         if (!allWordsExpl.ContainsKey(word.ToLower()))
         {
+            if (word.ToLower() == "bloody") print("bloody add");
             allWordsExpl.Add(word.ToLower(), explanation);
         }
     }

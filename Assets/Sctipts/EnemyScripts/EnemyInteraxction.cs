@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class EnemyInteraxction : MonoBehaviour,IClickable
 {
-    [SerializeField] EnemyPersona p;
+    [SerializeField] private EnemyPersona p;
+    [SerializeField] private int nextScene;
+    [SerializeField] private int rpToEnter;
     // Update is called once per frame
     void Update()
     {
@@ -16,7 +18,12 @@ public class EnemyInteraxction : MonoBehaviour,IClickable
 
     public void OnClick()
     {
+        if (rpToEnter > GameInformation.Instance.reputationPoints)
+        {
+            print("No enter");
+            return;
+        }
         GameInformation.Instance.SetEnemyPersona(p);
-        MySceneManager.SetScene(2);
+        MySceneManager.SetScene(nextScene);
     }
 }
