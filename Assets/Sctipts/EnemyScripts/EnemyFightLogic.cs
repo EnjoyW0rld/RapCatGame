@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class EnemyFightLogic : MonoBehaviour
 {
     [HideInInspector] public UnityEvent OnWordComplete;
+    public UnityEvent OnEnemyDeath;
     public UnityEvent<int> OnGetDamage;
 
     [SerializeField] TextMeshProUGUI hpText;
@@ -38,13 +39,12 @@ public class EnemyFightLogic : MonoBehaviour
             toUpdate = persona.getTimeToRead();
         }
         battlePhrases = WordsParser.GetEnemyBattleQueue(persona.getName());
-        SetNewWord();
+        //SetNewWord();
     }
 
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.H)) OnGetDamage?.Invoke(0);
         if (!fightL.isEnemyTurn) return;
         toUpdate -= Time.deltaTime;
         ShowText();
@@ -77,18 +77,20 @@ public class EnemyFightLogic : MonoBehaviour
         {
             int additionalRP = streak % 10 == 0 ? 20 : 0;
             GameInformation.Instance.UpdateRP(10 + additionalRP);
-            print("updated rp");
-            MySceneManager.SetScene(1);
+            OnEnemyDeath?.Invoke();
+            //MySceneManager.SetScene(1);
         }
         hpText.text = "Current health: " + persona.getHealth() + "/" + maxHp;
         OnGetDamage?.Invoke(10 + additionalDamage);
-        print("OnGetDamage invoked");
     }
     public EnemyPersona getCurrentPersona() => persona;
     void OnTurnChange(bool isEnemyTurn)
     {
-        if (isEnemyTurn) OnWordComplete?.Invoke();
-        SetNewWord();
+        if (isEnemyTurn)
+        {
+            OnWordComplete?.Invoke();
+            SetNewWord();
+        }
     }
 
 }

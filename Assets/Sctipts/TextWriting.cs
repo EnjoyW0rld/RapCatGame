@@ -242,7 +242,7 @@ public class TextWriting : MonoBehaviour
                     textGUI.text += _currentWord[i];
                 }
                 else if (i < lettersTyped) textGUI.text += _currentWord[i];
-                else textGUI.text += " ";
+                else textGUI.text += "_";
 
             }
         }
@@ -254,6 +254,7 @@ public class TextWriting : MonoBehaviour
     void WordComplete()
     {
         timeLeft = timeForWord;
+        if (WordsParser.HasExplanation(sentence[1]))
         GameInformation.Instance.AddToSeen(sentence[1]);
         lettersTyped = 0;
         currentStreak++;
