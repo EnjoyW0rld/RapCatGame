@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class HealthUI : MonoBehaviour
 {
-    [SerializeField] Transform healthPivot;
+    [SerializeField] private Transform healthPivot;
     enum Entity { Character, Enemy };
-    [SerializeField] Entity entity;
+    [SerializeField] private Entity entity;
+    [SerializeField] private Color[] gradientColours;
+    [SerializeField] private SpriteRenderer sprRend;
 
-    int maxHP;
-    float maxLenght;
-    float currentHP;
+    private int maxHP;
+    private float maxLenght;
+    private float currentHP;
 
     void Start()
     {
+        sprRend = GetComponentInChildren<SpriteRenderer>();
         maxLenght = healthPivot.localScale.x;
         switch (entity)
         {
@@ -39,7 +42,21 @@ public class HealthUI : MonoBehaviour
     void OnGetDamage(int damage)
     {
         currentHP -= damage;
-        float newScaleX = Mathf.Lerp(0, maxLenght,currentHP/maxHP);
+        float newScaleX = Mathf.Lerp(0, maxLenght, currentHP / maxHP);
         healthPivot.localScale = new Vector3(newScaleX, healthPivot.localScale.y, healthPivot.localScale.z);
+        int currColour = (int)(currentHP);
+        if (gradientColours == null || gradientColours.Length == 0) return;
+        print(currColour);
+        if(currColour > 66)
+        {
+            sprRend.color = gradientColours[2];
+        }else if(currColour > 33 && currColour < 66)
+        {
+            sprRend.color = gradientColours[1];
+        }
+        else
+        {
+            sprRend.color = gradientColours[0];
+        }
     }
 }

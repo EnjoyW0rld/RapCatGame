@@ -15,6 +15,9 @@ public class TextWriting : MonoBehaviour
     [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private TextMeshProUGUI timeGUI;
 
+    [SerializeField] private string fadedColour = "#c0c0c0ff";
+    [SerializeField] private string finishedColour = "#ff0000ff";
+
     private Queue<string[]> currentQueue;
     private string[] sentence;
     private int[] values;
@@ -183,8 +186,8 @@ public class TextWriting : MonoBehaviour
         text.text = "";
         text.text += sentence[0]; //first part of sentence add
 
-        text.text += "<color=#c0c0c0ff>"; //grey text open tag
-        text.text += "<color=#ff0000ff>"; //red text open tag
+        text.text += "<color=" + fadedColour + ">"; //grey text open tag
+        text.text += "<color=" + finishedColour + ">"; //red text open tag
 
         for (int i = 0; i < currentWord.Length; i++)
         {

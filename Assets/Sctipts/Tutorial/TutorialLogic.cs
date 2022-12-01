@@ -106,10 +106,7 @@ public class TutorialLogic : MonoBehaviour
             else enemyQueue = new Queue<string>(enemyS);
         }
     }
-    void ShowText()
-    {
-        //TextWriting
-    }
+    
     void ChangeText()
     {
         if (enemyQueue.Count == 0) MySceneManager.SetScene(nextScene);

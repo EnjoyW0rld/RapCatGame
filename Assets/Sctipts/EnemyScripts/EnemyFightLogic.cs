@@ -85,7 +85,7 @@ public class EnemyFightLogic : MonoBehaviour
     public EnemyPersona getCurrentPersona() => persona;
     void OnTurnChange(bool isEnemyTurn)
     {
-        OnWordComplete?.Invoke();
+        if (isEnemyTurn) OnWordComplete?.Invoke();
         SetNewWord();
     }
 
