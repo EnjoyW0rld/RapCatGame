@@ -58,7 +58,7 @@ public class TutorialLogic : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Return))
             {
                 ChangeText();
             }

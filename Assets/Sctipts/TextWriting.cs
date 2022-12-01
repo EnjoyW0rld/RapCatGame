@@ -25,6 +25,7 @@ public class TextWriting : MonoBehaviour
     private char[] currentWord;
     private int lettersTyped = 0;
     private int currentStreak = 0;
+    private bool fightStarted;
 
     //time variables
     [SerializeField] private float timeForWord;
@@ -50,6 +51,7 @@ public class TextWriting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!fightStarted) return;
         if (fightL.isEnemyTurn) return;
         KeyCode k = KeyCode.None;
 
@@ -182,7 +184,7 @@ public class TextWriting : MonoBehaviour
     void ShowText()
     {
         bool isFirstTime = !GameInformation.Instance.KnowWord(sentence[1]);
-        
+
         text.text = "";
         text.text += sentence[0]; //first part of sentence add
 
@@ -193,12 +195,12 @@ public class TextWriting : MonoBehaviour
         {
             if (isFirstTime)
             {
-                if(i == lettersTyped) text.text += "</color>";
+                if (i == lettersTyped) text.text += "</color>";
                 text.text += currentWord[i];
             }
             else
             {
-                if(i == lettersTyped) text.text += "</color>";
+                if (i == lettersTyped) text.text += "</color>";
                 if (i == 0)
                 {
                     text.text += currentWord[i];
@@ -213,7 +215,7 @@ public class TextWriting : MonoBehaviour
         text.text += "</color>";
         text.text += sentence[2];
     }
-    public static void ShowText(ref TextMeshProUGUI textGUI, string[] sentence,int lettersTyped)
+    public static void ShowText(ref TextMeshProUGUI textGUI, string[] sentence, int lettersTyped)
     {
         bool isFirstTime = !GameInformation.Instance.KnowWord(sentence[1]);
         char[] _currentWord = sentence[1].ToCharArray();
@@ -251,13 +253,14 @@ public class TextWriting : MonoBehaviour
     }
     void WordComplete()
     {
-            timeLeft = timeForWord;
-            GameInformation.Instance.AddToSeen(sentence[1]);
-            lettersTyped = 0;
-            currentStreak++;
-            onComplete?.Invoke(currentStreak);
-            if(currentQueue.Count > 0)
+        timeLeft = timeForWord;
+        GameInformation.Instance.AddToSeen(sentence[1]);
+        lettersTyped = 0;
+        currentStreak++;
+        onComplete?.Invoke(currentStreak);
+        if (currentQueue.Count > 0)
             SetNewWord();
-        
+
     }
+    public void SetFightState(bool started) => fightStarted = started;
 }

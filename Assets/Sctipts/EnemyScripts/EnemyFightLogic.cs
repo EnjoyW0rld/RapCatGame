@@ -44,6 +44,7 @@ public class EnemyFightLogic : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.H)) OnGetDamage?.Invoke(0);
         if (!fightL.isEnemyTurn) return;
         toUpdate -= Time.deltaTime;
         ShowText();
@@ -81,6 +82,7 @@ public class EnemyFightLogic : MonoBehaviour
         }
         hpText.text = "Current health: " + persona.getHealth() + "/" + maxHp;
         OnGetDamage?.Invoke(10 + additionalDamage);
+        print("OnGetDamage invoked");
     }
     public EnemyPersona getCurrentPersona() => persona;
     void OnTurnChange(bool isEnemyTurn)

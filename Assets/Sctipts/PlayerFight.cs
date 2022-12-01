@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class PlayerFight : MonoBehaviour
 {
-    [HideInInspector] public UnityEvent OnDeath;
+    public UnityEvent OnDeath;
     public UnityEvent OnDamage;
     [SerializeField] private int maxHP;
     int currentHp;
