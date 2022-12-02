@@ -37,6 +37,7 @@ public class TextWriting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(InstanciateText(sentence));
         enemy = FindObjectOfType<EnemyFightLogic>();
         timeLeft = timeForWord;
         values = GameInformation.Instance.keyValues;
@@ -255,7 +256,7 @@ public class TextWriting : MonoBehaviour
     {
         timeLeft = timeForWord;
         if (WordsParser.HasExplanation(sentence[1]))
-        GameInformation.Instance.AddToSeen(sentence[1]);
+            GameInformation.Instance.AddToSeen(sentence[1]);
         lettersTyped = 0;
         currentStreak++;
         onComplete?.Invoke(currentStreak);
@@ -264,4 +265,20 @@ public class TextWriting : MonoBehaviour
 
     }
     public void SetFightState(bool started) => fightStarted = started;
+    IEnumerator InstanciateText(string[] sentence)
+    {
+        List<string[]> chars = new List<string[]>();
+        bool finished = false;
+        //int currentPart = 0;
+        //int currentLetter = 0;
+
+        
+
+        while (!finished)
+        {
+
+            yield return null;
+        }
+
+    }
 }

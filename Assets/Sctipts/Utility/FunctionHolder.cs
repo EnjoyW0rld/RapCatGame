@@ -27,6 +27,7 @@ public class FunctionHolder : MonoBehaviour
     }
     public void Activate()
     {
+        print("activated");
         OnActivate?.Invoke();
     }
 }
