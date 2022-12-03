@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MyDictionary : MonoBehaviour, IClickable
 {
@@ -13,6 +14,8 @@ public class MyDictionary : MonoBehaviour, IClickable
     //[SerializeField] TextMeshProUGUI textPlace;
     [SerializeField] Canvas canvas;
     [SerializeField] TextMeshProUGUI textPlace;
+    public UnityEvent OnOpen;
+    public UnityEvent OnClose;
     void Awake()
     {
 
@@ -38,6 +41,8 @@ public class MyDictionary : MonoBehaviour, IClickable
     void TurnCanvasOn()
     {
         canvas.enabled = !canvas.enabled;
+        if(canvas.enabled) OnOpen?.Invoke();
+        else OnClose?.Invoke();
     }
 
     public void OnClick()

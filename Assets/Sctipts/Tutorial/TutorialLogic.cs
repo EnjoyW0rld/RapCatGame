@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TutorialLogic : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textBox;
     [SerializeField] private int nextScene;
+    public UnityEvent OnLetterType;
 
     private string subFolder = "BattleText/";
     private string enemyPath = "TutorialEnemy.txt";
@@ -39,6 +41,7 @@ public class TutorialLogic : MonoBehaviour
                 KeyCode k = GameInformation.Instance.GetPressedKey();
                 if (isLetterCorrect((char)k))
                 {
+                    OnLetterType?.Invoke();
                     letterTyped++;
                     TextWriting.ShowText(ref textBox, sentence, letterTyped);
                 }
