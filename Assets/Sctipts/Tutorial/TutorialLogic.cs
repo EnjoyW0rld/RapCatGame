@@ -8,6 +8,7 @@ using UnityEngine.Events;
 public class TutorialLogic : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textBox;
+    [SerializeField] private TextMeshProUGUI nameBox;
     [SerializeField] private int nextScene;
     public UnityEvent OnLetterType;
 
@@ -116,6 +117,7 @@ public class TutorialLogic : MonoBehaviour
         string enemySentence = enemyQueue.Dequeue();
         if (enemySentence == "-")
         {
+            nameBox.text = "Milly the Silly:";
             playerTurn = true;
             sentence = playerQueue.Dequeue();
             currentWord = sentence[1].ToCharArray();
@@ -123,6 +125,7 @@ public class TutorialLogic : MonoBehaviour
         }
         else
         {
+            nameBox.text = "George the Distinguished II";
             textBox.text = enemySentence;
         }
     }
