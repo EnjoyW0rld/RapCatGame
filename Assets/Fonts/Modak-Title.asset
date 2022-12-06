@@ -57,11 +57,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: Modak-Regular SDF
+  m_Name: Modak-Title
   m_EditorClassIdentifier: 
-  hashCode: -1010660662
+  hashCode: -747728991
   material: {fileID: 161267534144137659}
-  materialHashCode: 750675882
+  materialHashCode: 1738105569
   m_Version: 1.1.0
   m_SourceFontFileGUID: ba025c06c56077e408cd1c7dd6eef8a3
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: ba025c06c56077e408cd1c7dd6eef8a3, type: 3}
