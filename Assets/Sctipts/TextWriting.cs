@@ -118,6 +118,7 @@ public class TextWriting : MonoBehaviour
         //check if word has explanation and is not on the dictionary yet
         if (WordsParser.HasExplanation(sentence[1]) && !GameInformation.Instance.IsInDictionary(sentence[1]))
         {
+            print(sentence[1]);
             GameInformation.Instance.AddWord(sentence[1], WordsParser.GetExplanation(sentence[1]));
             OnNewWordAppear?.Invoke();
         }
@@ -211,7 +212,6 @@ public class TextWriting : MonoBehaviour
 
             }
         }
-
 
         text.text += "</color>";
         text.text += sentence[2];

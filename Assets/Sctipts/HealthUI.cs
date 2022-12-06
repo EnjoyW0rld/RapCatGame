@@ -46,7 +46,6 @@ public class HealthUI : MonoBehaviour
         healthPivot.localScale = new Vector3(newScaleX, healthPivot.localScale.y, healthPivot.localScale.z);
         int currColour = (int)(currentHP);
         if (gradientColours == null || gradientColours.Length == 0) return;
-        print(currColour);
         if(currColour > 66)
         {
             sprRend.color = gradientColours[2];

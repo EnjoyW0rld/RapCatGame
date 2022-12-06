@@ -11,6 +11,13 @@ public class TutorialLogic : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nameBox;
     [SerializeField] private int nextScene;
     public UnityEvent OnLetterType;
+    public UnityEvent OnEnemyTurn;
+    public UnityEvent OnPlayerTurn;
+
+    [Header("Profile variables")]
+    [SerializeField] private SpriteRenderer profileRenderer;
+    [SerializeField] private Sprite millieProfile;
+    [SerializeField] private Sprite enemyProfile;
 
     private string subFolder = "BattleText/";
     private string enemyPath = "TutorialEnemy.txt";
@@ -113,11 +120,17 @@ public class TutorialLogic : MonoBehaviour
     
     void ChangeText()
     {
-        if (enemyQueue.Count == 0) MySceneManager.SetScene(nextScene);
+        if (enemyQueue.Count == 0)
+        {
+            MySceneManager.SetScene(nextScene);
+            return;
+        }
         string enemySentence = enemyQueue.Dequeue();
         if (enemySentence == "-")
         {
             nameBox.text = "Milly the Silly:";
+            SetProfile(millieProfile);
+            OnPlayerTurn?.Invoke();
             playerTurn = true;
             sentence = playerQueue.Dequeue();
             currentWord = sentence[1].ToCharArray();
@@ -125,8 +138,14 @@ public class TutorialLogic : MonoBehaviour
         }
         else
         {
+            OnEnemyTurn?.Invoke();
+            SetProfile(enemyProfile);
             nameBox.text = "George the Distinguished II";
             textBox.text = enemySentence;
         }
+    }
+    void SetProfile(Sprite spr)
+    {
+        profileRenderer.sprite = spr;
     }
 }

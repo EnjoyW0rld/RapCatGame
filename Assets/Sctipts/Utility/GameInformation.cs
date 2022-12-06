@@ -47,7 +47,7 @@ public class GameInformation : MonoBehaviour
 
     public bool IsInDictionary(string word)
     {
-        return learnedWords.ContainsKey(word);
+        return learnedWords.ContainsKey(word.ToLower());
     }
     public void AddWord(string word, string explanation)
     {

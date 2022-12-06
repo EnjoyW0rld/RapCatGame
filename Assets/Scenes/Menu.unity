@@ -149,7 +149,7 @@ AudioSource:
   m_GameObject: {fileID: 13338906}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -4550285000531514301, guid: 1c32be1bd427d714996dc06be3641a40, type: 2}
   m_audioClip: {fileID: 8300000, guid: 11203d7d35b24c94c8f112ffc13f7f7a, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -871,7 +871,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.584
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3469,6 +3469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mixer: {fileID: 24100000, guid: 1c32be1bd427d714996dc06be3641a40, type: 2}
+  lowestValue: -40
 --- !u!82 &1371829531
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3713,6 +3714,7 @@ GameObject:
   - component: {fileID: 1547394554}
   - component: {fileID: 1547394556}
   - component: {fileID: 1547394557}
+  - component: {fileID: 1547394558}
   m_Layer: 5
   m_Name: kickLogo
   m_TagString: Untagged
@@ -3821,7 +3823,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1547394554}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1547394558}
+        m_TargetAssemblyTypeName: LinkOpen, Assembly-CSharp
+        m_MethodName: OpenLink
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1547394557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3891,6 +3905,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1547394558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547394552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cf97ccd200b3c14e975a1e2851be234, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1552808589
 GameObject:
   m_ObjectHideFlags: 0
@@ -4054,7 +4080,7 @@ AudioSource:
   m_GameObject: {fileID: 1652912289}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -4550285000531514301, guid: 1c32be1bd427d714996dc06be3641a40, type: 2}
   m_audioClip: {fileID: 8300000, guid: 0e235ebc9ae8d6e4085ea412c2e728e5, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -4522,7 +4548,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -4640,6 +4666,55 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 276af922e7188774faad5a781632a762, type: 3}
   - {fileID: 21300000, guid: 01cd343c63770b94dab7350dfb87d8a0, type: 3}
   currentSprite: 0
+--- !u!1 &1896289503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1896289505}
+  - component: {fileID: 1896289504}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1896289504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896289503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: d221942107c34814190fd455d8559d7f, type: 2}
+--- !u!4 &1896289505
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896289503}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.82218003, y: 0.14501716, z: 1.6094977}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1940912379
 GameObject:
   m_ObjectHideFlags: 0
@@ -4725,19 +4800,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1940912382}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 234323729}
-        m_TargetAssemblyTypeName: SliderController, Assembly-CSharp
-        m_MethodName: SwitchOnOFF
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1940912382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4817,6 +4880,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 234323729}
+          m_TargetAssemblyTypeName: SliderController, Assembly-CSharp
+          m_MethodName: OnPointerEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
   - eventID: 4
     callback:
       m_PersistentCalls:
@@ -4842,6 +4917,22 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0.3
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 234323729}
+          m_TargetAssemblyTypeName: SliderController, Assembly-CSharp
+          m_MethodName: OnPointerExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2

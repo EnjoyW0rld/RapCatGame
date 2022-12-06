@@ -43,4 +43,14 @@ public class SliderController : MonoBehaviour
     {
         iconToChange.sprite = spr;
     }
+    public void OnPointerEnter()
+    {
+        gameObject.SetActive(true);
+        SetSprite(isZero ? spriteAtZero[0] : defaultSprite[0]);
+    }
+    public void OnPointerExit()
+    {
+        gameObject.SetActive(false);
+        SetSprite(isZero ? spriteAtZero[1] : defaultSprite[1]);
+    }
 }

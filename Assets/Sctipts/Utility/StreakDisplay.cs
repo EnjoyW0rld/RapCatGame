@@ -14,7 +14,7 @@ public class StreakDisplay : MonoBehaviour
     }
     void EraseStreak()
     {
-        textBox.text = "";
+        textBox.text = "0";
     }
     void AddStreak(int streak)
     {
