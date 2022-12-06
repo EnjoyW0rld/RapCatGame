@@ -225,7 +225,7 @@ public class TextWriting : MonoBehaviour
         textGUI.text = "";
         textGUI.text += sentence[0]; //first part of sentence add
 
-        textGUI.text += "<color=#c0c0c0ff>"; //grey text open tag
+        textGUI.text += "<color=#8E8E8E>"; //grey text open tag
         textGUI.text += "<color=#ff0000ff>"; //red text open tag
 
         for (int i = 0; i < _currentWord.Length; i++)
