@@ -43,12 +43,14 @@ public class MyDictionary : MonoBehaviour, IClickable
         TextMeshProUGUI[] boxes = { textPlace, secondTextPlace };
         foreach (var item in GameInformation.Instance.learnedWords)
         {
-            if(wordsWritten == 3)
-            { 
+            if (wordsWritten == 5)
+            {
                 currentBox++;
                 wordsWritten = 0;
             }
-            boxes[currentBox].text += item.Key + item.Value;
+            boxes[currentBox].text += "<b>" + item.Key + "</b>";
+
+            boxes[currentBox].text += item.Value;
             boxes[currentBox].text += "\n";
             wordsWritten++;
         }
@@ -69,7 +71,7 @@ public class MyDictionary : MonoBehaviour, IClickable
     }
     void AddButtons()
     {
-        if(GameInformation.Instance.learnedWords.Count > 2)
+        if (GameInformation.Instance.learnedWords.Count > 4)
         {
             GetButton("next").gameObject.SetActive(currentPage == 0);
         }

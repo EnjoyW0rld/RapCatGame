@@ -8,7 +8,7 @@ public class GameInformation : MonoBehaviour
     private static GameInformation instance;
     EnemyPersona pers;
 
-    [HideInInspector] public Dictionary<string, string> learnedWords { get; private set; }
+    [HideInInspector] public SortedDictionary<string, string> learnedWords { get; private set; }
     [HideInInspector] public int reputationPoints { get; private set; }
     [HideInInspector] List<string> seenWords;
     [HideInInspector] public int[] keyValues { get; private set; }
@@ -22,7 +22,7 @@ public class GameInformation : MonoBehaviour
         if (Instance == null)
         {
             instance = this;
-            learnedWords = new Dictionary<string, string>();
+            learnedWords = new SortedDictionary<string, string>();
             seenWords = new List<string>();
             keyValues = (int[])System.Enum.GetValues(typeof(KeyCode));
             DontDestroyOnLoad(gameObject);
@@ -51,6 +51,7 @@ public class GameInformation : MonoBehaviour
     }
     public void AddWord(string word, string explanation)
     {
+        //string[] words = learnedWords.Keys
         learnedWords.Add(word, explanation);
     }
     public void AddToSeen(string word)
@@ -66,6 +67,8 @@ public class GameInformation : MonoBehaviour
             if (Input.GetKeyDown((KeyCode)keyValues[i]))
             {
                 if ((KeyCode)keyValues[i] == KeyCode.LeftShift) continue;
+                if ((KeyCode)keyValues[i] == KeyCode.Tab) continue;
+                if ((KeyCode)keyValues[i] == KeyCode.Return) continue;
                 return (KeyCode)keyValues[i];
             }
         }

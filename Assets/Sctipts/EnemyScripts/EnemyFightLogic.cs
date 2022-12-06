@@ -46,6 +46,13 @@ public class EnemyFightLogic : MonoBehaviour
     private void Update()
     {
         if (!fightL.isEnemyTurn) return;
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            fightL.ChangeTurn(false);
+        }
+        ShowText();
+        return;
+        /*
         toUpdate -= Time.deltaTime;
         ShowText();
         if (toUpdate < 0)
@@ -54,8 +61,7 @@ public class EnemyFightLogic : MonoBehaviour
             //OnWordComplete?.Invoke();
             fightL.ChangeTurn(false);
         }
-        return;
-
+        */
     }
 
     void SetNewWord()
