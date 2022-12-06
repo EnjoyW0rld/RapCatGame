@@ -9,7 +9,6 @@ public class EnemyFightLogic : MonoBehaviour
     [HideInInspector] public UnityEvent OnWordComplete;
     public UnityEvent OnEnemyDeath;
     public UnityEvent<int> OnGetDamage;
-
     [SerializeField] TextMeshProUGUI hpText;
     [SerializeField] TextMeshProUGUI wordsWrite;
     Queue<string> battlePhrases;
