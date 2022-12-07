@@ -5,12 +5,8 @@ using UnityEngine;
 public class EnemyInteraxction : MonoBehaviour,IClickable
 {
     [SerializeField] private EnemyPersona p;
-    [SerializeField] private int nextScene;
+    [SerializeField] private string nextScene;
     [SerializeField] private int rpToEnter;
-    // Update is called once per frame
-    void Update()
-    {
-    }
 
     public void OnClick()
     {

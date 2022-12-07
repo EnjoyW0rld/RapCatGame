@@ -9,7 +9,7 @@ public class TutorialLogic : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textBox;
     [SerializeField] private TextMeshProUGUI nameBox;
-    [SerializeField] private int nextScene;
+    [SerializeField] private string nextScene;
     public UnityEvent OnLetterType;
     public UnityEvent OnEnemyTurn;
     public UnityEvent OnPlayerTurn;

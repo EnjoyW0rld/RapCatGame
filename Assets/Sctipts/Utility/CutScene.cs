@@ -6,8 +6,8 @@ using UnityEngine.Video;
 public class CutScene : MonoBehaviour
 {
     [SerializeField] private VideoPlayer player;
-    [SerializeField] private int sceneToChange;
-
+    //[SerializeField] private int sceneToChange;
+    [SerializeField] private string sceneToChange;
     private void Start()
     {
         player.Play();

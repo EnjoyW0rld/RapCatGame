@@ -538,7 +538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textBox: {fileID: 1765911805}
   nameBox: {fileID: 1371565450}
-  nextScene: 1
+  nextScene: WalkingScene
   OnLetterType:
     m_PersistentCalls:
       m_Calls:

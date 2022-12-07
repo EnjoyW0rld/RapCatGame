@@ -577,7 +577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1862009945}
-  sceneToChange: 5
+  sceneToChange: Menu
 --- !u!1 &2036972264
 GameObject:
   m_ObjectHideFlags: 0

@@ -312,7 +312,7 @@ MonoBehaviour:
     health: 100
     timeToRead: 5
     name: nothing
-  nextScene: 4
+  nextScene: 
   rpToEnter: 10
 --- !u!212 &182126586
 SpriteRenderer:
@@ -612,7 +612,7 @@ MonoBehaviour:
     health: 100
     timeToRead: 3
     name: Asher the Smasher
-  nextScene: 2
+  nextScene: FightScene1
   rpToEnter: 0
 --- !u!212 &364159104
 SpriteRenderer:
