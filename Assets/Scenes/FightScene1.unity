@@ -1544,6 +1544,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: enter
       objectReference: {fileID: 0}
+    - target: {fileID: 1833344828579317137, guid: e7b0281592453e944ba60235aacde10b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1833344828579317139, guid: e7b0281592453e944ba60235aacde10b, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -5593,7 +5597,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1238374965
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8688,6 +8692,8 @@ PlayableDirector:
   - key: {fileID: 9179652521449977102, guid: e46ebb1978a2a094e9cdad0dac5d1433, type: 2}
     value: {fileID: 578931020}
   - key: {fileID: 7354555438872302639, guid: e46ebb1978a2a094e9cdad0dac5d1433, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 3341355715271674318, guid: e46ebb1978a2a094e9cdad0dac5d1433, type: 2}
     value: {fileID: 0}
   m_ExposedReferences:
     m_References:
