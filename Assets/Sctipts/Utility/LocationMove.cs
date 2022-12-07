@@ -8,17 +8,23 @@ public class LocationMove : MonoBehaviour
     [SerializeField] private int RPtoProceed;
     [SerializeField, ContextMenuItem("Set original pos", "SetOriginalPos")] private Vector3 OriginalPos;
     [SerializeField, ContextMenuItem("Set future pos", "SetFuturePos")] private Vector3 positionToBe;
+    [SerializeField] Sprite[] sprites;
+    SpriteRenderer spriteRenderer;
     public UnityEvent OnFailToMove;
+    private bool enoughPoints;
 
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        enoughPoints = GameInformation.Instance.reputationPoints >= RPtoProceed;
         Camera.main.transform.position = OriginalPos;
+        OnHoverExit();
     }
 
     // Update is called once per frame
     public void OnClick()
     {
-        if (GameInformation.Instance.reputationPoints >= RPtoProceed)
+        if (enoughPoints)
         {
             MoveToFuturePos();
         }
@@ -26,6 +32,17 @@ public class LocationMove : MonoBehaviour
         {
             OnFailToMove?.Invoke();
         }
+    }
+
+    //1 - Light on
+    //3 - Light off
+    public void OnHoverEnter()
+    {
+        spriteRenderer.sprite = enoughPoints ? sprites[1] : sprites[3];
+    }
+    public void OnHoverExit()
+    {
+        spriteRenderer.sprite = enoughPoints ? sprites[0] : sprites[2];
     }
     void MoveToFuturePos()
     {

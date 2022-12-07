@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: eb9b461224efc7e43873afb4d4816a5e
+guid: 2af858b08178c1b468669a47303335ce
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AsherIdle_0
+      name: idle_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 737
-        height: 994
+        width: 1098
+        height: 836
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,20 +119,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8b2b172df22f8741b67ee3b44394929
-      internalID: 1483455266
+      spriteID: 4ef76f40469706d47a99fde63d361329
+      internalID: 599940600
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AsherIdle_1
+      name: idle_1
       rect:
         serializedVersion: 2
-        x: 737
+        x: 1098
         y: 0
-        width: 737
-        height: 994
+        width: 1098
+        height: 836
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,20 +140,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c9302d30975c77429aba49329f0ea94
-      internalID: 1639852124
+      spriteID: 881d1db58427018488e775fc593ac15c
+      internalID: 542827549
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AsherIdle_2
+      name: idle_2
       rect:
         serializedVersion: 2
-        x: 1474
+        x: 2196
         y: 0
-        width: 737
-        height: 994
+        width: 1098
+        height: 836
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,20 +161,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7f56baf84e2c824ca1a3da15a716459
-      internalID: -1289856861
+      spriteID: 42def582f0654ff4b915318d7e318e41
+      internalID: -604752429
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AsherIdle_3
+      name: idle_3
       rect:
         serializedVersion: 2
-        x: 2211
+        x: 3294
         y: 0
-        width: 737
-        height: 994
+        width: 1098
+        height: 836
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,20 +182,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af63e848d2a646d48810459b6ecfed71
-      internalID: 1758888249
+      spriteID: feaf9a88d3029d048858b28131ef829c
+      internalID: 363095589
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AsherIdle_4
+      name: idle_4
       rect:
         serializedVersion: 2
-        x: 2948
+        x: 4392
         y: 0
-        width: 737
-        height: 994
+        width: 1098
+        height: 836
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,20 +203,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 742a2095b61f45442a196f129f928492
-      internalID: -1247065325
+      spriteID: aa17a086edb10d1418a72829b482265e
+      internalID: -224249182
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AsherIdle_5
+      name: idle_5
       rect:
         serializedVersion: 2
-        x: 3685
+        x: 5490
         y: 0
-        width: 737
-        height: 994
+        width: 1098
+        height: 836
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -224,20 +224,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bde5b5041d9d4254eb0a4aedd5253867
-      internalID: -1645513227
+      spriteID: 26d3054f0f6df1b4fb6e4243acf79210
+      internalID: 768868947
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AsherIdle_6
+      name: idle_6
       rect:
         serializedVersion: 2
-        x: 4422
+        x: 6588
         y: 0
-        width: 737
-        height: 994
+        width: 1098
+        height: 836
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -245,20 +245,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5aeac18579f8f7d429f1a0990f34bcd4
-      internalID: 795464076
+      spriteID: 08b71e11df3e09842a606d7ff7a9eb40
+      internalID: -720860736
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AsherIdle_7
+      name: idle_7
       rect:
         serializedVersion: 2
-        x: 5159
+        x: 7686
         y: 0
-        width: 737
-        height: 994
+        width: 1098
+        height: 836
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -266,20 +266,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 133d0deba7260a642a6a4000eb55d4e7
-      internalID: -1296041829
+      spriteID: 7a7bf1f06d5bec544810016fa301c486
+      internalID: -1340722349
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AsherIdle_8
+      name: idle_8
       rect:
         serializedVersion: 2
-        x: 5896
+        x: 8784
         y: 0
-        width: 737
-        height: 994
+        width: 1098
+        height: 836
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -287,20 +287,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fdd9c51d160a774469bcd2031834e5ec
-      internalID: -197082771
+      spriteID: 7aa7a25662fc5e945a6eab64edc81469
+      internalID: 2034896562
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AsherIdle_9
+      name: idle_9
       rect:
         serializedVersion: 2
-        x: 6633
+        x: 9882
         y: 0
-        width: 737
-        height: 994
+        width: 1098
+        height: 836
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -308,50 +308,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e1ee48165b4b4804abac1845b78cf13f
-      internalID: -64588494
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AsherIdle_10
-      rect:
-        serializedVersion: 2
-        x: 7370
-        y: 0
-        width: 737
-        height: 994
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 287fe4f8fc7da8b4093c95ea118067f8
-      internalID: 551596508
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: AsherIdle_11
-      rect:
-        serializedVersion: 2
-        x: 8107
-        y: 0
-        width: 737
-        height: 994
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a1aa6965f884b944a962a3f1497a23d3
-      internalID: 1337766867
+      spriteID: ba21a1ed149641745b7d9e49d0f75f22
+      internalID: -255583670
       vertices: []
       indices: 
       edges: []
@@ -367,18 +325,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      AsherIdle_8: -197082771
-      AsherIdle_3: 1758888249
-      AsherIdle_5: -1645513227
-      AsherIdle_2: -1289856861
-      AsherIdle_10: 551596508
-      AsherIdle_4: -1247065325
-      AsherIdle_1: 1639852124
-      AsherIdle_6: 795464076
-      AsherIdle_9: -64588494
-      AsherIdle_11: 1337766867
-      AsherIdle_7: -1296041829
-      AsherIdle_0: 1483455266
+      idle_4: -224249182
+      idle_3: 363095589
+      idle_0: 599940600
+      idle_1: 542827549
+      idle_8: 2034896562
+      idle_6: -720860736
+      idle_7: -1340722349
+      idle_2: -604752429
+      idle_5: 768868947
+      idle_9: -255583670
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
