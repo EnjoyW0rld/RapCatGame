@@ -11,6 +11,7 @@ public class TutorialLogic : MonoBehaviour
     [SerializeField] private TextMeshProUGUI nameBox;
     [SerializeField] private string nextScene;
     [SerializeField] private GameObject enterButton;
+    [SerializeField] private GameObject bubbleGeorge;
     public UnityEvent OnLetterType;
     public UnityEvent OnEnemyTurn;
     public UnityEvent OnPlayerTurn;
@@ -133,6 +134,7 @@ public class TutorialLogic : MonoBehaviour
             SetProfile(millieProfile);
             OnPlayerTurn?.Invoke();
             enterButton.SetActive(false);
+            if (bubbleGeorge != null) bubbleGeorge.SetActive(true);
             playerTurn = true;
             sentence = playerQueue.Dequeue();
             currentWord = sentence[1].ToCharArray();
@@ -143,6 +145,7 @@ public class TutorialLogic : MonoBehaviour
             OnEnemyTurn?.Invoke();
             enterButton.SetActive(true);
             SetProfile(enemyProfile);
+            if (bubbleGeorge != null && bubbleGeorge.active) Destroy(bubbleGeorge);
             nameBox.text = "George the Distinguished II";
             textBox.text = enemySentence;
         }
