@@ -1,7 +1,6 @@
-Hello darling, it’s getting late. You shouldn’t be in this part of the city.  
-But if you wish to go on, you must know some things first. 
-For you to move, you must point and click when the cursor changes to a paw. 
-Keep an eye on the arrows that guide you through this unpleasant neighborhood. 
+Hello darling, it is getting late. You should not be in this part of the city.  
+But if one wishes to go on, one must know some things first. 
+You must be aware of all the arrows around this unpleasant neighborhood. 
 Be careful who you interact with, and remember that the right words can get you out of anything. 
 Speaking of words, how about you show me how good you are. Type the letters in the correct order.
 -
@@ -12,7 +11,7 @@ The bar above your heads indicate how much life you have left. Keep an eye on th
 Each correct word will deal damage to your opponent. Having a word streak is essential if you want to win fast! 
 But do not be ignorant, the opponent can also damage you. 
 If you manage to get out alive, you will gladly receive more reputation points!
-You need the RP to unlock new parts of the neighborhood! 
+You need the RP to unlock new parts of the neighbourhood! 
 If you feel brave enough, let’s give it a shot!
 -
 Dazzling! Now, some words you have encountered before will only have the first letter! When in doubt check the dictionary!
