@@ -1,4 +1,3 @@
-Enemy:George the Distinguished II
 Hello darling, it’s getting late. You shouldn’t be in this part of the city.  
 But if you wish to go on, you must know some things first. 
 For you to move, you must point and click when the cursor changes to a paw. 

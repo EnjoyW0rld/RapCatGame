@@ -15,7 +15,11 @@ public class CutScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!player.isPlaying && player.frame > 1) MySceneManager.SetScene(sceneToChange);
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Return)) MySceneManager.SetScene(sceneToChange);
+        if (!player.isPlaying && player.frame > 1) CutSceneEnd();
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Return)) CutSceneEnd();
+    }
+    public void CutSceneEnd()
+    {
+        MySceneManager.SetScene(sceneToChange);
     }
 }
