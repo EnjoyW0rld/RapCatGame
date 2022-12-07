@@ -7,10 +7,10 @@ using UnityEngine.Events;
 public class GeneralFightLogic : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI nameBox;
-    string characterName = "Milli the Silly";
-    [SerializeField] public UnityEvent<bool> OnTurnChange;
+    private string characterName = "Millie the Silly";
+    public UnityEvent<bool> OnTurnChange;
 
-    bool _isEnemyTurn;
+    private bool _isEnemyTurn;
     public bool isEnemyTurn { get => _isEnemyTurn; }
 
     private void Start()

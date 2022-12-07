@@ -557,7 +557,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 90bf8083998d62e46a8c5a28f892f4ff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 155358592efda034b896365ae94ac362, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1056,7 +1056,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Asher wins!
+  m_text: Smokey wins!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d7f2a6d23470c9e419627161d4beb9de, type: 2}
   m_sharedMaterial: {fileID: -3428721798024441892, guid: d7f2a6d23470c9e419627161d4beb9de, type: 2}
@@ -5769,8 +5769,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -56, y: -127}
-  m_SizeDelta: {x: 84.12, y: 84.12}
+  m_AnchoredPosition: {x: -56, y: -74}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1264370733
 MonoBehaviour:
@@ -5792,7 +5792,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d5be0ad336d6bd843aa7ba6a719f58d2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 834d4551defa51541bf6d2dc673db3bd, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -5883,7 +5883,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1979969245, guid: 08416a21e7db81a4c8f3933bdf5272b2, type: 3}
+  m_Sprite: {fileID: 1770065469, guid: b9fcfed51a24deb439cb715ddf0fa320, type: 3}
   m_Color: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5919,7 +5919,7 @@ Animator:
   m_GameObject: {fileID: 1286550764}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c986967ea17631f4c9d11af7b21b8788, type: 2}
+  m_Controller: {fileID: 9100000, guid: 553e615319f8e74488b37cd781f5935d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -6249,7 +6249,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Asher the Smasher
+  m_text: Smokey Skull
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d7f2a6d23470c9e419627161d4beb9de, type: 2}
   m_sharedMaterial: {fileID: -3428721798024441892, guid: d7f2a6d23470c9e419627161d4beb9de, type: 2}
@@ -6770,7 +6770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   millieProfile: {fileID: 21300000, guid: c1873bbde596ed14db1b431c47d0edd8, type: 3}
-  enemyProfile: {fileID: 21300000, guid: 6ab31fb3258603c47bf29c5004ec4b0d, type: 3}
+  enemyProfile: {fileID: 21300000, guid: 17e1e3faad6e7a642b1699de9433d567, type: 3}
   profilePlace: {fileID: 1454872953}
 --- !u!1 &1475806028
 GameObject:
@@ -7320,7 +7320,7 @@ GameObject:
   - component: {fileID: 1687295791}
   - component: {fileID: 1687295790}
   m_Layer: 5
-  m_Name: AsherWin
+  m_Name: SmokeyWIn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7344,7 +7344,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 555, y: 211}
-  m_SizeDelta: {x: 791, y: 1030}
+  m_SizeDelta: {x: 715, y: 1183}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1687295790
 Animator:
@@ -7356,7 +7356,7 @@ Animator:
   m_GameObject: {fileID: 1687295788}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5c4fc966151929e45b2e7a87a736fae3, type: 2}
+  m_Controller: {fileID: 9100000, guid: c3c07c390e971334e9f2b0cd5bc5133a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -7386,7 +7386,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2048378549, guid: 30bfc960dc089fc43806de123c4b563c, type: 3}
+  m_Sprite: {fileID: -1734026905, guid: ee9c3f90296e9154a85a8363ded2af08, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7963,7 +7963,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6cd105a545b1da74e98b08e3ed648106, type: 3}
+  m_Sprite: {fileID: 1770065469, guid: b9fcfed51a24deb439cb715ddf0fa320, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -8426,7 +8426,7 @@ GameObject:
   - component: {fileID: 2065416579}
   - component: {fileID: 2065416578}
   m_Layer: 5
-  m_Name: AsherLose
+  m_Name: SmokeyLose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8450,7 +8450,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 555, y: 211}
-  m_SizeDelta: {x: 550, y: 981}
+  m_SizeDelta: {x: 900.2198, y: 1200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &2065416578
 Animator:
@@ -8462,7 +8462,7 @@ Animator:
   m_GameObject: {fileID: 2065416576}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1b20780b89590a746b4a833c20545cbb, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1ad4de977d16946419c74d1236c5bf52, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -8492,7 +8492,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2048378549, guid: 30bfc960dc089fc43806de123c4b563c, type: 3}
+  m_Sprite: {fileID: 1764171493, guid: d99cb79af94b2764e93a5b0e2b6e974c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -130,7 +130,7 @@ public class TutorialLogic : MonoBehaviour
         string enemySentence = enemyQueue.Dequeue();
         if (enemySentence == "-")
         {
-            nameBox.text = "Milly the Silly:";
+            nameBox.text = "Millie the Silly:";
             SetProfile(millieProfile);
             OnPlayerTurn?.Invoke();
             enterButton.SetActive(false);
