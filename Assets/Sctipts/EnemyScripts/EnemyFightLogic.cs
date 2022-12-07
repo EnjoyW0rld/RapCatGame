@@ -50,8 +50,7 @@ public class EnemyFightLogic : MonoBehaviour
             fightL.ChangeTurn(false);
         }
         ShowText();
-        return;
-        /*
+        //return;
         toUpdate -= Time.deltaTime;
         ShowText();
         if (toUpdate < 0)
@@ -60,7 +59,7 @@ public class EnemyFightLogic : MonoBehaviour
             //OnWordComplete?.Invoke();
             fightL.ChangeTurn(false);
         }
-        */
+        
     }
 
     void SetNewWord()
