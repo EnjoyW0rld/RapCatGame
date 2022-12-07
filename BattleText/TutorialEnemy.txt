@@ -7,10 +7,10 @@ Speaking of words, how about you show me how good you are. Type the letters in t
 Brilliant! Now, a new word has been added to your dictionary. Press TAB to check it out! 
 When street fights happen, you need to move fast and be accurate! 
 If you make a mistake or run out of time, it will be your opponent’s turn. 
-The bar above your heads indicate how much life you have left. Keep an eye on them. 
+The bar above your heads indicate how much life you have left. Keep an eye on it. 
 Each correct word will deal damage to your opponent. Having a word streak is essential if you want to win fast! 
 But do not be ignorant, the opponent can also damage you. 
-If you manage to get out alive, you will gladly receive more reputation points!
+If you manage to get out alive, you will gladly receive more reputation points (RP)!
 You need the RP to unlock new parts of the neighbourhood! 
 If you feel brave enough, let’s give it a shot!
 -
