@@ -688,6 +688,9 @@ MonoBehaviour:
   OnWordComplete:
     m_PersistentCalls:
       m_Calls: []
+  OnEnemyDeath:
+    m_PersistentCalls:
+      m_Calls: []
   OnGetDamage:
     m_PersistentCalls:
       m_Calls:
@@ -2013,6 +2016,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthPivot: {fileID: 1033718797}
   entity: 0
+  gradientColours: []
+  sprRend: {fileID: 0}
 --- !u!1 &1034552051
 GameObject:
   m_ObjectHideFlags: 0
@@ -2538,7 +2543,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: e4cc54034b5834a499ea017f54b670e9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 155358592efda034b896365ae94ac362, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2558,8 +2563,8 @@ Transform:
   m_GameObject: {fileID: 1129678211}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.004796982, y: 0.041140556, z: 0}
-  m_LocalScale: {x: 0.9349426, y: 0.9305949, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.49767488, z: 0.5347922}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
@@ -2983,6 +2988,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthPivot: {fileID: 1627257848}
   entity: 1
+  gradientColours: []
+  sprRend: {fileID: 0}
 --- !u!1 &1674519419
 GameObject:
   m_ObjectHideFlags: 0
@@ -3233,6 +3240,8 @@ MonoBehaviour:
         m_CallState: 2
   text: {fileID: 952467810}
   timeGUI: {fileID: 79980435}
+  fadedColour: '#c0c0c0ff'
+  finishedColour: '#ff0000ff'
   timeForWord: 4
 --- !u!114 &1850204469
 MonoBehaviour:
@@ -3333,7 +3342,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameBox: {fileID: 1034552052}
-  characterName: Milly the Silly
   OnTurnChange:
     m_PersistentCalls:
       m_Calls:

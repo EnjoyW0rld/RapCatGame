@@ -25,6 +25,7 @@ public class GameInformation : MonoBehaviour
             learnedWords = new SortedDictionary<string, string>();
             seenWords = new List<string>();
             keyValues = (int[])System.Enum.GetValues(typeof(KeyCode));
+            reputationPoints = 0;
             DontDestroyOnLoad(gameObject);
         }
         else
