@@ -588,6 +588,7 @@ MonoBehaviour:
   textBox: {fileID: 1765911805}
   nameBox: {fileID: 1371565450}
   nextScene: WalkingScene
+  enterButton: {fileID: 1695479957}
   OnLetterType:
     m_PersistentCalls:
       m_Calls:
@@ -1584,6 +1585,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4d971f8900b33847a89beb03fb0cd0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1695479957 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1833344828579317137, guid: e7b0281592453e944ba60235aacde10b, type: 3}
+  m_PrefabInstance: {fileID: 1833344827608492245}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1741073209
 GameObject:
   m_ObjectHideFlags: 0

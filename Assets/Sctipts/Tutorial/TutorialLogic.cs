@@ -10,6 +10,7 @@ public class TutorialLogic : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textBox;
     [SerializeField] private TextMeshProUGUI nameBox;
     [SerializeField] private string nextScene;
+    [SerializeField] private GameObject enterButton;
     public UnityEvent OnLetterType;
     public UnityEvent OnEnemyTurn;
     public UnityEvent OnPlayerTurn;
@@ -131,6 +132,7 @@ public class TutorialLogic : MonoBehaviour
             nameBox.text = "Milly the Silly:";
             SetProfile(millieProfile);
             OnPlayerTurn?.Invoke();
+            enterButton.SetActive(false);
             playerTurn = true;
             sentence = playerQueue.Dequeue();
             currentWord = sentence[1].ToCharArray();
@@ -139,6 +141,7 @@ public class TutorialLogic : MonoBehaviour
         else
         {
             OnEnemyTurn?.Invoke();
+            enterButton.SetActive(true);
             SetProfile(enemyProfile);
             nameBox.text = "George the Distinguished II";
             textBox.text = enemySentence;
