@@ -7,20 +7,18 @@ public class MouseClickManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
+
+        if (hit.collider == null) return;
+
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.GetRayIntersection(ray,Mathf.Infinity);
-
-            if(hit.collider != null)
+            if (hit.transform.TryGetComponent<IClickable>(out IClickable iter))
             {
-                if(hit.transform.TryGetComponent<IClickable>(out IClickable iter)) 
-                {
-                    iter.OnClick();
-                }
+                iter.OnClick();
 
             }
-
         }
     }
 }

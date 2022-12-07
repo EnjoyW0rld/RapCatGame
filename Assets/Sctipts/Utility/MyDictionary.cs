@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class MyDictionary : MonoBehaviour, IClickable
+public class MyDictionary : MonoBehaviour
 {
     //static MyDictionary instance;
     //public static MyDictionary Instance { get { return instance; } }

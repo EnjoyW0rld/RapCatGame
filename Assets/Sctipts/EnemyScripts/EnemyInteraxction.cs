@@ -10,10 +10,6 @@ public class EnemyInteraxction : MonoBehaviour,IClickable
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            OnClick();
-        }
     }
 
     public void OnClick()
@@ -25,5 +21,9 @@ public class EnemyInteraxction : MonoBehaviour,IClickable
         }
         GameInformation.Instance.SetEnemyPersona(p);
         MySceneManager.SetScene(nextScene);
+    }
+    public void OnHover()
+    {
+
     }
 }

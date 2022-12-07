@@ -11,7 +11,8 @@ If you make a mistake or run out of time, it will be your opponent’s turn.
 The bar above your heads indicate how much life you have left. Keep an eye on them. 
 Each correct word will deal damage to your opponent. Having a word streak is essential if you want to win fast! 
 But do not be ignorant, the opponent can also damage you. 
-If you manage to get out alive, you will gladly receive more reputation points! 
+If you manage to get out alive, you will gladly receive more reputation points!
+You need the RP to unlock new parts of the neighborhood! 
 If you feel brave enough, let’s give it a shot!
 -
 Dazzling! Now, some words you have encountered before will only have the first letter! When in doubt check the dictionary!
