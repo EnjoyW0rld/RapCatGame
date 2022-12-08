@@ -6,14 +6,14 @@ public class GameInformation : MonoBehaviour
 {
 
     private static GameInformation instance;
-    EnemyPersona pers;
+    private EnemyPersona pers;
 
     [HideInInspector] public SortedDictionary<string, string> learnedWords { get; private set; }
     [HideInInspector] public int reputationPoints { get; private set; }
-    [HideInInspector] List<string> seenWords;
+    private List<string> seenWords;
     [HideInInspector] public int[] keyValues { get; private set; }
 
-    float masterVolume = 1;
+    private float masterVolume = 1;
 
     public static GameInformation Instance { get => instance; }
 
@@ -52,7 +52,6 @@ public class GameInformation : MonoBehaviour
     }
     public void AddWord(string word, string explanation)
     {
-        //string[] words = learnedWords.Keys
         learnedWords.Add(word, explanation);
     }
     public void AddToSeen(string word)

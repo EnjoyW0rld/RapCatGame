@@ -74,22 +74,9 @@ public class TextWriting : MonoBehaviour
             {
                 WordComplete();
             }
-            //ShowText();
         }
 
         ShowText();
-    }
-
-    KeyCode GetPressedKey()
-    {
-        for (int i = 0; i < values.Length; i++)
-        {
-            if (Input.GetKeyDown((KeyCode)values[i]))
-            {
-                return (KeyCode)values[i];
-            }
-        }
-        return KeyCode.None;
     }
 
     void TimeManager()
@@ -127,60 +114,6 @@ public class TextWriting : MonoBehaviour
     bool isLetterCorrect(char c)
     {
         return c == currentWord[lettersTyped] || char.ToUpper(c) == currentWord[lettersTyped];
-    }
-    void ShowText(bool f = true)
-    {
-        bool isFirstTime = !GameInformation.Instance.KnowWord(sentence[1]);//GameInformation.Instance.IsInDictionary(sentence[1]);
-        text.text = " ";
-        if (sentence != null)
-        {
-            text.text += sentence[0];
-        }
-        text.text += "<color=#c0c0c0ff>"; //grey text open tag
-        text.text += "<color=#ff0000ff>"; //red text open tag
-        //text.text += currentWord[0];
-
-        for (int i = 0; i < currentWord.Length; i++)
-        {
-            if (isFirstTime)
-            {
-                //text.color = Color.white;
-                if (i == lettersTyped)
-                {
-                    text.text += "</color>"; //red text close tag
-                }
-                text.text += currentWord[i];
-            }
-            else
-            {
-                if (i < lettersTyped)
-                {
-                    text.text += currentWord[i];
-                }
-                else
-                {
-                    text.text += '_';
-                }
-
-            }
-            /*
-            //text.color = Color.white;
-            if (i == lettersTyped)
-            {
-                text.text += "</color>"; //red text close tag
-            }
-            text.text += currentWord[i];
-             */
-
-        }
-
-        text.text += "</color>";
-        //text.text += "</color>";
-        if (sentence != null)
-        {
-            text.text += sentence[2];
-        }
-
     }
     void ShowText()
     {

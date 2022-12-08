@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class ScoreUpdate : MonoBehaviour
 {
-    TextMeshProUGUI text;
-    int score;
+    private TextMeshProUGUI text;
+    private int score;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,12 +16,6 @@ public class ScoreUpdate : MonoBehaviour
             text.text = "Current score: 0";
         }
         FindObjectOfType<TextWriting>().onComplete.AddListener(UpdateScore);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void UpdateScore(int streak)

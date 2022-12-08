@@ -8,19 +8,13 @@ using UnityEngine.UI;
 
 public class MyDictionary : MonoBehaviour
 {
-    //static MyDictionary instance;
-    //public static MyDictionary Instance { get { return instance; } }
-    //Dictionary<string, string> dict;
-
-    //[SerializeField] GameObject dictionaryScreen;
-    //[SerializeField] TextMeshProUGUI textPlace;
     [SerializeField] private Canvas canvas;
     [SerializeField] private TextMeshProUGUI textPlace;
     [SerializeField] private TextMeshProUGUI secondTextPlace;
     [SerializeField] private MyButton[] buttons;
     [SerializeField] private GameObject pageNumber;
-    //[SerializeField] private Dictionary<string, int> ff;
-    int currentPage = 0;
+
+    private int currentPage = 0;
     public UnityEvent OnOpen;
     public UnityEvent OnClose;
 
@@ -57,7 +51,6 @@ public class MyDictionary : MonoBehaviour
     }
     void TurnCanvasOn()
     {
-        //canvas.enabled = !canvas.enabled;
         if (!canvas.enabled)
         {
             print("on open");

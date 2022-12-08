@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class StreakDisplay : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI textBox;
+    [SerializeField] private TextMeshProUGUI textBox;
     private void Start()
     {
         TextWriting tw = FindObjectOfType<TextWriting>();

@@ -7,10 +7,7 @@ public class WordsParser : MonoBehaviour
 {
     [SerializeField] string pathPlayer = "sentence.txt";
     [SerializeField] string pathEnemy = "test.txt";
-    string subFolder = "BattleText/";
-
-    //static List<string[]> sentences;
-    //static List<string[]> enemyWords;
+    private string subFolder = "BattleText/";
 
     static Dictionary<string, List<string[]>> playerWordsPool;
     static Dictionary<string, List<string>> enemyWordsPool;
@@ -47,25 +44,6 @@ public class WordsParser : MonoBehaviour
         finishedParsing = true;
     }
 
-    string[] GetStrings(string _path)
-    {
-        List<string> strings = new List<string>();
-        if (!File.Exists(_path))
-        {
-            File.Create(_path);
-        }
-        using (StreamReader sr = new StreamReader(_path))
-        {
-            string s;
-            while ((s = sr.ReadLine()) != null)
-            {
-                strings.Add(s);
-            }
-
-        }
-        return strings.ToArray();
-    }
-
     void ParseAndApply(string _path, bool forPlayer = true)
     {
         bool foundTag = false;
@@ -89,12 +67,10 @@ public class WordsParser : MonoBehaviour
                 switch (tags[0])
                 {
                     case "Player":
-                        //playerWordsPool.Add(tags[1], ParsePlayer(str));
                         playerWords.Add(ParsePlayer(str));
                         break;
                     case "Enemy":
                         enemyWords.Add(str);
-                        //enemyWordsPool.Add(tags[1], str);
                         break;
                 }
             }
@@ -179,7 +155,6 @@ public class WordsParser : MonoBehaviour
 
     public static void AddToNotOnDictionary(string word)
     {
-        //if (HasExplanation(word.ToLower())) return;
         if (!notOnDictionary.Contains(word.ToLower()))
         {
             notOnDictionary.Add(word.ToLower());

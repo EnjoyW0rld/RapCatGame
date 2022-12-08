@@ -7,10 +7,10 @@ using UnityEngine.Events;
 public class Timer : MonoBehaviour
 {
     [SerializeField] UnityEvent onTimerEnd;
-    [SerializeField] float timeLeft;
-    [SerializeField] bool isRepeating;
-    bool isDone;
-    float originalTime;
+    [SerializeField] private float timeLeft;
+    [SerializeField] private bool isRepeating;
+    private bool isDone;
+    private float originalTime;
 
     private void Start()
     {
@@ -41,13 +41,3 @@ public class Timer : MonoBehaviour
         }
     }
 }
-/*
- * 
-[Serializable]
-class PrebuildAction
-{
-    enum Script { SceneManager };
-    [SerializeField] Script scriptToInteract;
-
-}
- */

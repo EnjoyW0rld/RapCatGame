@@ -8,8 +8,8 @@ public class LocationMove : MonoBehaviour
     [SerializeField] private int RPtoProceed;
     [SerializeField, ContextMenuItem("Set original pos", "SetOriginalPos")] private Vector3 OriginalPos;
     [SerializeField, ContextMenuItem("Set future pos", "SetFuturePos")] private Vector3 positionToBe;
-    [SerializeField] Sprite[] sprites;
-    SpriteRenderer spriteRenderer;
+    [SerializeField] private Sprite[] sprites;
+    private SpriteRenderer spriteRenderer;
     public UnityEvent OnFailToMove;
     private bool enoughPoints;
 

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SpriteChanger : MonoBehaviour
 {
-    SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
     Color c = Color.gray;
-    [SerializeField] bool greyWhenTrue;
+    [SerializeField] private bool greyWhenTrue;
 
     private void Start()
     {

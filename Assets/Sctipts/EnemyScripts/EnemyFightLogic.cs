@@ -9,21 +9,18 @@ public class EnemyFightLogic : MonoBehaviour
     [HideInInspector] public UnityEvent OnWordComplete;
     public UnityEvent OnEnemyDeath;
     public UnityEvent<int> OnGetDamage;
-    [SerializeField] TextMeshProUGUI hpText;
-    [SerializeField] TextMeshProUGUI wordsWrite;
-    Queue<string> battlePhrases;
+    [SerializeField] private TextMeshProUGUI hpText;
+    [SerializeField] private TextMeshProUGUI wordsWrite;
+    private Queue<string> battlePhrases;
 
-    EnemyPersona persona;
-    int maxHp;
+    private EnemyPersona persona;
+    private int maxHp;
 
-    GeneralFightLogic fightL;
+    private GeneralFightLogic fightL;
 
-    string sentence;
-    //string[] sentence;
-    char[] currentWord;
-    int lettersTyped;
+    private string sentence;
 
-    float toUpdate;
+    private float toUpdate;
 
     void Start()
     {
@@ -49,10 +46,7 @@ public class EnemyFightLogic : MonoBehaviour
         {
             fightL.ChangeTurn(false);
         }
-        ShowText();
-        //return;
         toUpdate -= Time.deltaTime;
-        ShowText();
         if (toUpdate < 0)
         {
             toUpdate = persona.getTimeToRead();
@@ -60,6 +54,7 @@ public class EnemyFightLogic : MonoBehaviour
             fightL.ChangeTurn(false);
         }
         
+        ShowText();
     }
 
     void SetNewWord()

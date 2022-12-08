@@ -6,7 +6,7 @@ using UnityEngine;
 public class RPdisplay : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI textBox;
-    // Start is called before the first frame update
+
     void Start()
     {
         if (textBox != null)

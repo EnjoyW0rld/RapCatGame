@@ -41,7 +41,6 @@ public class TutorialLogic : MonoBehaviour
     }
 
     //shout out to Alexandra Treimane
-    // Update is called once per frame
     void Update()
     {
         if (playerTurn)

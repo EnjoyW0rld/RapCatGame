@@ -8,7 +8,6 @@ public class ClockScale : MonoBehaviour
     private TextWriting tw;
     private float timeForWord;
     private float originalScale;
-    private float currentScale;
 
     void Start()
     {

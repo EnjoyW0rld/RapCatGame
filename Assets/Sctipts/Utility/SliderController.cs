@@ -7,7 +7,7 @@ public class SliderController : MonoBehaviour
     [SerializeField] private SpriteRenderer iconToChange;
     [SerializeField] private Sprite[] spriteAtZero;
     [SerializeField] private Sprite[] defaultSprite;
-    bool isZero;
+    private bool isZero;
     private void Start()
     {
         if (iconToChange == null)
@@ -15,15 +15,12 @@ public class SliderController : MonoBehaviour
             Debug.LogError("No icon to change assigned");
             return;
         }
-        //defaultSprite = iconToChange.sprite;
     }
 
     public void ChangeSprite(float value)
     {
         isZero = value == 0;
         SetSprite(isZero ? spriteAtZero[0] : defaultSprite[0]);
-        //if (value == 0) iconToChange.sprite = spriteAtZero;
-        //else iconToChange.sprite = defaultSprite;
     }
 
     public void SwitchOnOFF()

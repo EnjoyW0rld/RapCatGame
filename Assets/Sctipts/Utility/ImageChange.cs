@@ -16,12 +16,6 @@ public class ImageChange : MonoBehaviour
         spriteRenderer.sprite = sprites[currentSprite];
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.W)) SwapForward();
-        if (Input.GetKeyDown(KeyCode.S)) SwapBack();
-    }
     public void SwapForward()
     {
         currentSprite++;

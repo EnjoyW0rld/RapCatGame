@@ -18,8 +18,4 @@ public class EnemyInteraxction : MonoBehaviour,IClickable
         GameInformation.Instance.SetEnemyPersona(p);
         MySceneManager.SetScene(nextScene);
     }
-    public void OnHover()
-    {
-
-    }
 }

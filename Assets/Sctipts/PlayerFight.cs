@@ -8,7 +8,7 @@ public class PlayerFight : MonoBehaviour
     public UnityEvent OnDeath;
     public UnityEvent OnDamage;
     [SerializeField] private int maxHP;
-    int currentHp;
+    private int currentHp;
     // Start is called before the first frame update
     void Start()
     {

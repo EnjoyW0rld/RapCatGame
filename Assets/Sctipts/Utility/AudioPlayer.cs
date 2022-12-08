@@ -10,15 +10,7 @@ public class AudioPlayer : MonoBehaviour
 
     [SerializeField] private AudioClip[] clips;
     [SerializeField] private bool isRandom;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
     public void PlayRandom()
     {
         m_AudioSource.clip = clips[Random.Range(0, clips.Length)];
